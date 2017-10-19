@@ -14,12 +14,12 @@
 		<servlet-name>FacesServlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-
+<!-- 
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/erro.xhtml</location>
 	</error-page>
-
+ -->
 	<!-- Login filter -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
