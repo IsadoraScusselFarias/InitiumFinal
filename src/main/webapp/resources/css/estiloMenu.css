@@ -1,0 +1,33 @@
+.menuContainer{
+	width:300px;
+	border:1px solid black;
+	text-align:center;
+	padding:5px;
+	position: relative;
+	float:left;
+}
+.menuContainer li{
+	border:1px solid black;
+	padding:10px;
+	list-style-type:none;
+	margin-left:-41px;
+}
+.menuContainer li:hover{
+	background-color:#262626;
+	color:white;
+}
+.conteudoContainer{
+	position: relative;
+	float:left;
+	width:800px;
+	border:1px solid black;
+	margin-left:10px;
+	min-height:600px;
+	margin-bottom:20px;
+	padding:10px;
+}
+.footer{
+	clear:both;
+	margin-top:20px;
+	border:1px solid black;
+}

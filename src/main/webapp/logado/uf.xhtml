@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="container">
+				<h:messages />
+				<div class="row">
+					<h:outputLabel value="Pesquisar" />
+					<h:inputText id="nomeUfFiltrada" value="#{ufBean.nomeUfFiltrada}" />
+					<h:commandButton class="btn" value="Filtrar"
+						action="#{ufBean.listarUf}" />
+				</div>
+				<div class="row">
+					<h:dataTable value="#{ufBean.list}" var="item"
+						rendered="#{not empty ufBean.list}">
+						<h:column>
+							<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
+						<h:column>
+							<h:commandLink action="#{ufBean.editar(item)}">
+								<h:graphicImage library="imagem" name="edit.png" alt="Editar"
+									title="Editar" />
+							</h:commandLink>
+
+						</h:column>
+						<h:column>
+							<h:commandLink action="#{ufBean.remover(item)}">
+								<h:graphicImage library="imagem" name="trash.png" alt="Remover"
+									title="Remover" />
+							</h:commandLink>
+
+						</h:column>
+					</h:dataTable>
+				</div>
+				<div class="row">
+					<h:commandButton value="Adicionar" action="#{ufBean.novo}" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

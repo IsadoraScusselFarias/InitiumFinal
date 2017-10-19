@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<ui:insert name="head">
+		<ui:include src="head.xhtml" />
+	</ui:insert>
+</h:head>
+<h:body>
+	<div>
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</div>
+	<div class="menuContainer">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div class="conteudoContainer">
+		<ui:insert name="conteudo" id="conteudo"></ui:insert>
+	</div>
+	<div class="footer">
+		<ui:insert name="footer">
+			<ui:include src="footer.xhtml" />
+		</ui:insert>
+	</div>
+
+	<h:outputScript name="bootstrap.min.js" library="js" async="true"
+		type="application/javascript" />
+</h:body>
+</html>

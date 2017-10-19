@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>exemplo</title>
+	<h:outputStylesheet name="bootstrap.min.css" library="css"
+		type="text/css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="container">
+
+			<div class="row">
+				<h:outputLabel value="Nome:" for="campo-nome" />
+				<h:inputText value="#{cidadeBean.cidade.nome}" id="campo-nome"
+					required="true" label="Nome"
+					validatorMessage="Digite somente letras" maxlength="50">
+					<f:validateRegex pattern="^[a-zA-Z-_ ]+$" />
+				</h:inputText>
+				<h:message for="campo-nome" style="color:red" />
+			</div>
+			<div class="row">
+				<h:outputLabel value="UF:" for="campo-uf" />
+				<h:selectOneMenu value="#{cidadeBean.cidade.uf}" id="campo-uf"
+					requiredMessage="UF obrigatorio" label="UF" required="true">
+					<f:selectItem itemValue="" itemLabel="Selecione uma UF" />
+					<f:selectItems value="#{cidadeBean.listUf}" var="uf"
+						itemLabel="#{uf.nome}" itemValue="#{uf}"  />
+				</h:selectOneMenu>
+				<h:message for="campo-uf" style="color:red" />
+			</div>
+			<div class="row">
+				<h:commandButton value="Salvar" action="#{cidadeBean.salvar}" />
+			</div>
+		</div>
+	</h:form>
+	<h:outputScript name="bootstrap.min.js" library="js" async="true"
+		type="application/javascript" />
+</h:body>
+</html>
