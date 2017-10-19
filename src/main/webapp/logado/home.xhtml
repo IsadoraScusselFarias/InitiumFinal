@@ -3,16 +3,31 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>exemplo</title>
-	<h:outputStylesheet name="bootstrap.min.css" library="css"
-		type="text/css" />
+	<title>Home</title>
+	<h:outputStylesheet name="home.css" library="css" type="text/css" />
+	<meta charset="UTF-8"/>
 </h:head>
 
 <h:body>
-
+	<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger"/>
+	<header class="avatar">
+	<h:graphicImage value="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg"/>
+	<h2>#{sessionScope.usuario}</h2>
+	</header>
+	<ul>
+    <li tabindex="0" class="icon-user"><span>Minha conta</span></li>
+    <li tabindex="0" class="icon-users"><span>Avaliadores</span></li>
+    <li tabindex="0" class="icon-add-user"><span>Candidatos</span></li>
+    <li tabindex="0" class="icon-code"><span><a href="logado/tipoAvaliacao.xhtml">Tipo Avaliação</a></span></li>
+    <li tabindex="0" class="icon-news"><span>Provas</span></li>
+    <li tabindex="0" class="icon-log-out"><span>Sair</span></li>
+  </ul>
+  </nav>
+	
+	<main>
 	<h:form>
 		<div class="container">
-			Ola #{sessionScope.usuario}! Voce esta logado.
 			<div class="row">
 				<div id="col-6">
 					<h:commandButton value="Cadastrar UF" action="uf"
@@ -33,6 +48,8 @@
 			</div>
 		</div>
 	</h:form>
+	</main>
+	
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
 		type="application/javascript" />
 </h:body>
