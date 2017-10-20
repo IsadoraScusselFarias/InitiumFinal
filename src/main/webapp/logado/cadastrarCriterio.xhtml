@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>exemplo</title>
+	<h:outputStylesheet name="bootstrap.min.css" library="css"
+		type="text/css" />
+</h:head>
+<h:body>
+	<h1>DESCRICAO</h1>
+	<h:form>
+		<div class="container">
+
+			<div class="row">
+				<h:outputLabel value="Descricao:" for="campo-descricao" />
+				<h:inputText value="#{criterioBean.criterio.descricao}"
+					id="campo-descricao" required="true" label="Descricao"
+					maxlength="50">
+				</h:inputText>
+				<h:message for="campo-descricao" style="color:red" />
+				<h:outputLabel value="Obrigatorio" for="campo-obrigatorio" />
+				<h:selectBooleanCheckbox
+					value="#{criterioBean.criterio.obrigatorio}" id="campo-obrigatorio" />
+
+			</div>
+			<div class="row">
+				<h:commandButton value="Salvar" action="#{criterioBean.salvar}" />
+			</div>
+		</div>
+	</h:form>
+	<h:outputScript name="bootstrap.min.js" library="js" async="true"
+		type="application/javascript" />
+</h:body>
+</html>
