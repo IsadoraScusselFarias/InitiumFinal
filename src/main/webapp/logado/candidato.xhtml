@@ -6,17 +6,19 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
+		<h1>CANDIDATO</h1>
 		<h:form>
 			<div class="container">
 				<h:messages />
 				<div class="row">
 					<h:outputLabel value="Pesquisar" />
-					<h:inputText id="nomeCandidatoFiltrada" value="#{candidatoBean.nomeCandidatoFiltrada}" />
+					<h:inputText id="nomeCandidatoFiltrada"
+						value="#{candidatoBean.nomeCandidatoFiltrada}" />
 					<h:commandButton class="btn" value="Filtrar"
 						action="#{candidatoBean.listarCandidato}" />
 				</div>
 				<div class="row">
-					<h:dataTable  value="#{candidatoBean.list}" var="item"
+					<h:dataTable value="#{candidatoBean.list}" var="item"
 						rendered="#{not empty candidatoBean.list}" class="tabelaCandidato">
 						<h:column>
 							<f:facet name="header">ID</f:facet>#{item.id}</h:column>

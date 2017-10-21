@@ -10,28 +10,39 @@
 
 <h:body>
 
-	<h:form>
-		<div class="container">
-			Ola #{sessionScope.usuario}! Voce esta logado.
-			<div class="row">
-				<div id="col-6">
-					<h:commandButton value="Cadastrar UF" action="uf" class="btn btn-default" />
+	<ui:composition template="base/template.xhtml">
+
+		<ui:define name="conteudo">
+			<h:form>
+				<div class="container">
+					Ola #{sessionScope.usuario}! Voce esta logado.
+					<div class="row">
+						<div id="col-2">
+							<h:commandButton value="Cadastrar UF" action="uf"
+								class="btn btn-default" />
+						</div>
+						<div id="col-3">
+							<h:commandButton value="Cadastrar Cidade" action="cidade"
+								class="btn btn-default" />
+						</div>
+						<div id="col-4">
+							<h:commandButton value="Cadastrar Criterio" action="criterio"
+								class="btn btn-default" />
+						</div>
+						<div id="col-5">
+							<h:commandButton value="Cadastrar Candidato" action="candidato"
+								class="btn btn-default" />
+						</div>
+						<div id="col-6">
+							<h:commandButton value=" Sair "
+								action="#{autenticacaoBean.registraSaida}" class="btn " />
+						</div>
+					</div>
 				</div>
-				<div id="col-3">
-					<h:commandButton value="Cadastrar Cidade" action="cidade"
-						class="btn btn-default" />
-				</div>
-					<div id="col-3">
-					<h:commandButton value="Cadastrar Criterio" action="criterio"
-						class="btn btn-default" />
-				</div>
-				<div id="col-3">
-					<h:commandButton value=" Sair "
-						action="#{autenticacaoBean.registraSaida}" class="btn " />
-				</div>
-			</div>
-		</div>
-	</h:form>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
 		type="application/javascript" />
 </h:body>
