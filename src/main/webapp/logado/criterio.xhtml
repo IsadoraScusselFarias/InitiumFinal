@@ -1,10 +1,10 @@
-<html xmlns="http://www.w3.org /1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>exemplo</title>
+	<title>Criterio</title>
 	<h:outputStylesheet name="bootstrap.min.css" library="css"
 		type="text/css" />
 </h:head>
@@ -12,7 +12,7 @@
 	<ui:composition template="base/template.xhtml">
 
 		<ui:define name="conteudo">
-		<h1>CRITERIO</h1>
+			<h1>CRITERIO</h1>
 			<h:form>
 				<div class="container">
 					<h:messages />
@@ -30,6 +30,8 @@
 								<f:facet name="header">ID</f:facet>#{item.id}</h:column>
 							<h:column>
 								<f:facet name="header">Descricao</f:facet>#{item.descricao}</h:column>
+							<h:column>
+								<f:facet name="header">Tipo Avalaicao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
 							<h:column>
 								<f:facet name="header">obrigatorio</f:facet>
 								<h:graphicImage rendered="#{item.obrigatorio}" library="imagem"

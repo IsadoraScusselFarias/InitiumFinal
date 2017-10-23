@@ -1,10 +1,10 @@
-<html xmlns="http://www.w3.org /1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>exemplo</title>
+	<title>Cadastrar Criterio</title>
 	<h:outputStylesheet name="bootstrap.min.css" library="css"
 		type="text/css" />
 </h:head>
@@ -24,6 +24,16 @@
 				<h:selectBooleanCheckbox
 					value="#{criterioBean.criterio.obrigatorio}" id="campo-obrigatorio" />
 
+			</div>
+			<div class="row">
+				<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+				<h:selectOneMenu value="#{criterioBean.criterio.tipoAvaliacao}" id="campo-tipoAvaliacao"
+					requiredMessage="Tipo avaliacao obrigatorio" label="Tipo Avaliacao" required="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um tipo de avaliacao" />
+					<f:selectItems value="#{criterioBean.listTipoAvaliacao}" var="tipoAvaliacao"
+						itemLabel="#{tipoAvaliacao.nome}" itemValue="#{tipoAvaliacao}"  />
+				</h:selectOneMenu>
+				<h:message for="campo-tipoAvaliacao" style="color:red" />
 			</div>
 			<div class="row">
 				<h:commandButton value="Salvar" action="#{criterioBean.salvar}" />
