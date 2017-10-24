@@ -2,22 +2,30 @@
 	position: relative;
 	float:left;
 	width:1050px;
-	border:1px solid grey;
 	min-height:600px;
 	margin-bottom:20px;
-	padding:5px;
 	background-color:white;
 	box-shadow: 5px 5px 5px #262626;
 	border-radius: .25rem;
 	color:black;
 }
 .container{
-	padding:50px 70px 50px 70px;
+	margin-top:50px;
+	padding:0px 70px 50px 70px;
+	border-radius: .25rem;
+
 }
+table{
+	color:black;
+}
+
 .barraSuperiorContainer{
 	background-color:grey;
 	padding:5px;
+	color:white;
 	border-radius: .25rem;
+	min-width:100%;
+	margin:0px;
 }
 .barraSuperiorContainer span{
 	margin-right:5px;
