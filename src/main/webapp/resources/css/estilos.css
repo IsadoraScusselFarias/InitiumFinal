@@ -20,6 +20,10 @@
 table{
 	color:black;
 }
+table img {
+	width:25px;
+	fill:black;
+}
  ul{
 	list-style-type:none;
 }
@@ -60,7 +64,9 @@ table{
 }
 .centralizarTabela{
 	text-align:center;
+
 }
+
 .menuSuperior{
 	float:right;
 	width:400px;
@@ -79,6 +85,7 @@ table{
 	margin-top:20px;
 
 }
+
 .linha{
 	border-bottom: 2px solid #DC0000;
 	box-shadow: 0px 4px 3px lightgrey;
