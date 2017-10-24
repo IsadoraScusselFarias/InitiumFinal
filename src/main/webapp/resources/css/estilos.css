@@ -2,25 +2,41 @@
 	position: relative;
 	float:left;
 	width:1050px;
-	border:1px solid grey;
 	min-height:600px;
 	margin-bottom:20px;
-	padding:5px;
 	background-color:white;
 	box-shadow: 5px 5px 5px #262626;
 	border-radius: .25rem;
 	color:black;
+	margin-left:10px;
 }
 .container{
-	padding:50px 70px 50px 70px;
+	margin-top:10px;
+	border-radius: .25rem;
+
+}
+.formularioContainer{
+	margin:50px;
+}
+table{
+	color:black;
+}
+ ul{
+	list-style-type:none;
 }
 .barraSuperiorContainer{
 	background-color:grey;
 	padding:5px;
+	color:white;
 	border-radius: .25rem;
+	min-width:100%;
+	margin:0px;
+	margin-bottom:10px;
+	text-align:center;
 }
 .barraSuperiorContainer span{
 	margin-right:5px;
+	min-width:100%;
 }
 .tabela{
 	color:black;
@@ -83,6 +99,7 @@ main {
   left: 0;
   z-index: 5;
   outline: none;
+
 }
 .menu .avatar {
   background: #DC0000;

@@ -7,32 +7,34 @@
 
 	<ui:define name="conteudo">
 		<h:form>
-			<div class="container">
-
-				<div class="barraSuperiorContainer">
-					<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
-							id="nomeCandidatoFiltrada" class="col-sm-8"
-							value="#{candidatoBean.nomeCandidatoFiltrada}" /></span> <span><h:commandButton
-							class="btn" value="Filtrar"
-							action="#{candidatoBean.listarCandidato}" /></span> <span><h:commandButton
-							value="Adicionar" class="btn" action="#{candidatoBean.novo}" /></span>
-				</div>
-				<div>
+			<div class="barraSuperiorContainer">
+				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
+						id="nomeCandidatoFiltrada" class="col-sm-8"
+						value="#{candidatoBean.nomeCandidatoFiltrada}" /></span> <span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{candidatoBean.listarCandidato}" /></span> <span><h:commandButton
+						value="Cadastrar" class=" btn btn-success" action="#{candidatoBean.novo}" /></span>
+			</div>
+			<div class="alert-success">
 					<h:messages />
 				</div>
+			<div class="container">
 				<div class="row">
 					<h:dataTable value="#{candidatoBean.list}" var="item"
-						rendered="#{not empty candidatoBean.list}" class="table table-hover table-bordered">
+						rendered="#{not empty candidatoBean.list}"
+						class="table table-hover table-bordered thead-inverse">
+						<thead>
+						<h:column >
+							<f:facet name="header" > ID</f:facet>#{item.id}</h:column>
 						<h:column>
-							<f:facet name="header" class="thead-inverse">ID</f:facet>#{item.id}</h:column>
+							<f:facet name="header" >Nome</f:facet>#{item.nome}</h:column>
 						<h:column>
-							<f:facet name="header" class="thead-inverse">Nome</f:facet>#{item.nome}</h:column>
+							<f:facet name="header">Email</f:facet>#{item.email}</h:column>
 						<h:column>
-							<f:facet name="header" class="thead-inverse">Email</f:facet>#{item.email}</h:column>
+							<f:facet name="header" >Telefone</f:facet>#{item.telefone}</h:column>
 						<h:column>
-							<f:facet name="header" class="thead-inverse">Telefone</f:facet>#{item.telefone}</h:column>
-						<h:column>
-							<f:facet name="header" class="thead-inverse">Informacoes</f:facet>#{item.informacoes}</h:column>
+							<f:facet name="header" >Informacoes</f:facet>#{item.informacoes}</h:column>
+
 						<h:column class="centralizarTabela">
 							<div class="centralizarTabela">
 								<h:commandLink action="#{candidatoBean.editar(item)}">
@@ -49,6 +51,7 @@
 								</h:commandLink>
 							</div>
 						</h:column>
+					</thead>
 					</h:dataTable>
 				</div>
 
