@@ -8,17 +8,20 @@
 	box-shadow: 5px 5px 5px #262626;
 	border-radius: .25rem;
 	color:black;
+	margin-left:10px;
 }
 .container{
-	margin-top:50px;
-	padding:0px 70px 50px 70px;
+	margin-top:10px;
 	border-radius: .25rem;
 
+}
+.formularioContainer{
+	margin:50px;
 }
 table{
 	color:black;
 }
-.alert-sucess li{
+ ul{
 	list-style-type:none;
 }
 .barraSuperiorContainer{
@@ -28,9 +31,12 @@ table{
 	border-radius: .25rem;
 	min-width:100%;
 	margin:0px;
+	margin-bottom:10px;
+	text-align:center;
 }
 .barraSuperiorContainer span{
 	margin-right:5px;
+	min-width:100%;
 }
 .tabela{
 	color:black;
@@ -93,6 +99,7 @@ main {
   left: 0;
   z-index: 5;
   outline: none;
+
 }
 .menu .avatar {
   background: #DC0000;
