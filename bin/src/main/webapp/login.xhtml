@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet name="bootstrap.min.css" library="css" type="text/css" />
+	<h:outputStylesheet name="login.css" library="css" type="text/css" />
+	<h:outputStylesheet name="https://fonts.googleapis.com/css?family=Open+Sans" library="css"/>
+
+</h:head>
+
+<h:body class="bodyLogin">
+	<div class="wrapper">
+		<h:messages />
+		<h:form class="form-signin">
+		<h:graphicImage value="resources/imagem/logo.png" />
+					<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario" label="Usuario" class="form-control" p:placeholder="Email" p:type="text"/>
+					<h:message for="campo-usuario" style="color:red" />
+					<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha" label="Senha" class="form-control" p:placeholder="Senha" p:type="password"/>
+					<h:message for="campo-senha" style="color:red" />
+					<h:commandButton value="Entrar" class="btn btn-danger btn-block" action="#{autenticacaoBean.autentica}" />
+
+		</h:form>
+	</div>
+
+	<h:outputScript name="bootstrap.min.js" library="js" async="true" type="application/javascript" />
+</h:body>
+</html>

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="container">
+				<div class="row">
+					<h:outputLabel value="UF:" for="campo-uf" />
+					<h:inputText value="#{ufBean.uf.nome}" id="campo-uf"
+						required="true" label="UF"
+						validatorMessage="Digite somente letras" maxlength="2">
+						<f:validateRegex pattern="^[a-zA-Z]+$" />
+					</h:inputText>
+					<h:message for="campo-uf" style="color:red" />
+				</div>
+				<div class="row">
+					<h:commandButton value="Salvar" action="#{ufBean.salvar}" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>
