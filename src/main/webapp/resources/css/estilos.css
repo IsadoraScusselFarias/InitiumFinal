@@ -18,7 +18,9 @@
 table{
 	color:black;
 }
-
+.alert-sucess li{
+	list-style-type:none;
+}
 .barraSuperiorContainer{
 	background-color:grey;
 	padding:5px;
