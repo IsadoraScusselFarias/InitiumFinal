@@ -8,32 +8,33 @@
 	<ui:define name="conteudo">
 		<h:form>
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
+			<div class="formularioContainer">
+					<div class="row">
+					<div class="col-2 col-form-label">
 						<h:outputLabel value="Nome:" for="campo-candidato" />
 					</div>
 
-					<div class="col-sm-8">
+					<div class="col-10">
 						<h:inputText value="#{candidatoBean.candidato.nome}"
 							id="campo-candidato" required="true" label="candidato">
 						</h:inputText>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-2 col-form-label">
 						<h:outputLabel value="Email:" for="campo-candidato" class="" />
 					</div>
-					<div class="col-sm-8">
+					<div class="col-10">
 						<h:inputText value="#{candidatoBean.candidato.email}"
 							id="campo-email" required="true" label="candidato">
 						</h:inputText>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-2 col-form-label">
 						<h:outputLabel value="Telefone:" for="campo-candidato" />
 					</div>
-					<div class="col-sm-8">
+					<div class="col-10">
 						<h:inputText value="#{candidatoBean.candidato.telefone}"
 							id="campo-telefone" required="true" label="candidato">
 						</h:inputText>
@@ -41,10 +42,10 @@
 
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-2 col-form-label">
 						<h:outputLabel value="Informacoes:" for="campo-candidato" />
 					</div>
-					<div class="col-sm-8">
+					<div class="col-10">
 						<h:inputText value="#{candidatoBean.candidato.informacoes}"
 							id="campo-informacoes" required="true" label="candidato">
 						</h:inputText>
@@ -53,6 +54,8 @@
 				<div class="row">
 					<h:commandButton value="Salvar" action="#{candidatoBean.salvar}" />
 				</div>
+			</div>
+
 			</div>
 		</h:form>
 	</ui:define>
