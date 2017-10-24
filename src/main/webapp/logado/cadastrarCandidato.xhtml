@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org /1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -30,16 +30,25 @@
 					</div>
 				</div>
 				<div class="row">
-					<h:outputLabel value="Telefone:" for="campo-candidato" />
-					<h:inputText value="#{candidatoBean.candidato.telefone}"
-						id="campo-telefone" required="true" label="candidato">
-					</h:inputText>
+					<div class="col-sm-4">
+						<h:outputLabel value="Telefone:" for="campo-candidato" />
+					</div>
+					<div class="col-sm-8">
+						<h:inputText value="#{candidatoBean.candidato.telefone}"
+							id="campo-telefone" required="true" label="candidato">
+						</h:inputText>
+					</div>
+
 				</div>
 				<div class="row">
-					<h:outputLabel value="Informacoes:" for="campo-candidato" />
-					<h:inputText value="#{candidatoBean.candidato.informacoes}"
-						id="campo-informacoes" required="true" label="candidato">
-					</h:inputText>
+					<div class="col-sm-4">
+						<h:outputLabel value="Informacoes:" for="campo-candidato" />
+					</div>
+					<div class="col-sm-8">
+						<h:inputText value="#{candidatoBean.candidato.informacoes}"
+							id="campo-informacoes" required="true" label="candidato">
+						</h:inputText>
+					</div>
 				</div>
 				<div class="row">
 					<h:commandButton value="Salvar" action="#{candidatoBean.salvar}" />
