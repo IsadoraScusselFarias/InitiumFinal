@@ -1,12 +1,20 @@
-<div >
-   <div>
-   		<div>Foto</div>
-   		<div>Nome Usuario</div>
-   </div>
-   <div>
-   		<ul>
-   			<li>Avaliador</li>
-   			<li>Provas</li>
-   		</ul>
-   </div>
-</div>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger" />
+	<header class="avatar">
+		<h:graphicImage
+			value="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" />
+		<h2>#{sessionScope.usuario}</h2>
+	</header>
+	<ul>
+		<li tabindex="0" class="icon-users"><span>Avaliadores</span></li>
+		<a href="/Initium2/logado/candidato.xhtml"><li tabindex="0" class="icon-add-user"><span>Candidatos</span></li></a>
+		<a href="/Initium2/logado/tipoAvaliacao.xhtml"><li tabindex="0" class="icon-code"><span>Tipo Avalição</span></li></a>
+		<li tabindex="0" class="icon-news"><span>Provas</span></li>
+	</ul>
+</nav>
+</html>
