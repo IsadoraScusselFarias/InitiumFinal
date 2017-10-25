@@ -12,7 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.db1.dao.impl.CriterioDao;
+import br.com.db1.dao.impl.TipoAvaliacaoDao;
+import br.com.db1.model.Cidade;
 import br.com.db1.model.Criterio;
+import br.com.db1.model.TipoAvaliacao;
 
 @ApplicationScoped
 @Named
@@ -21,10 +24,60 @@ public class CriterioBean {
 	@Inject
 	private CriterioDao dao;
 	
+	/* ************************************** */
+	@Inject
+	private TipoAvaliacaoDao tipoAvaliacaoDao;
+	
+	
+	private List<TipoAvaliacao> listTipoAvaliacao;
+	
+	/* ************************************** */
+	
 	private List<Criterio> list;
 	private String descricaoCriterioFiltrado;
 	private Criterio criterio;
 	
+	
+	
+	public CriterioDao getDao() {
+		return dao;
+	}
+	public void setDao(CriterioDao dao) {
+		this.dao = dao;
+	}
+	
+	
+	public TipoAvaliacaoDao getTipoAvaliacaoDao() {
+		return tipoAvaliacaoDao;
+	}
+	public void setTipoAvaliacaoDao(TipoAvaliacaoDao tipoAvaliacaoDao) {
+		this.tipoAvaliacaoDao = tipoAvaliacaoDao;
+	}
+	
+	public List<TipoAvaliacao> getListTipoAvaliacao() {
+		return listTipoAvaliacao;
+	}
+	public void setListTipoAvaliacao(List<TipoAvaliacao> listTipoAvaliacao) {
+		this.listTipoAvaliacao = listTipoAvaliacao;
+	}
+	
+	
+	@PostConstruct
+	public void init() {
+		zerarLista();
+		zerarListaTipoAvaliacao();
+		carregarTipoAvaliacao();
+	}
+	
+	private void carregarTipoAvaliacao() {
+		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
+	}
+
+	private void zerarListaTipoAvaliacao() {
+		listTipoAvaliacao = new ArrayList<TipoAvaliacao>();
+	}
+	
+	/* ***************************************** */
 	public List<Criterio> getList() {
 		return list;
 	}
@@ -49,10 +102,6 @@ public class CriterioBean {
 		this.criterio = criterio;
 	}
 
-	@PostConstruct
-	public void init() {
-		zerarLista();
-	}
 
 	private void zerarLista() {
 		list = new ArrayList<Criterio>();
