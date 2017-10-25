@@ -1,3 +1,6 @@
+body img{
+	width:20px;
+}
 .conteudoContainer{
 	position: relative;
 	float:left;
