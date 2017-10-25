@@ -49,9 +49,8 @@
 						<h:outputLabel value="Informações:" for="campo-candidato" />
 					</div>
 					<div class="col-10">
-						<h:inputText value="#{candidatoBean.candidato.informacoes}"
-							id="campo-informacoes" required="true" label="candidato">
-						</h:inputText>
+						<h:inputTextarea cols="30" rows="10" value="#{candidatoBean.candidato.informacoes}"
+							id="campo-informacoes" required="true" label="candidato" />
 					</div>
 				</div>
 				<div class="row">
