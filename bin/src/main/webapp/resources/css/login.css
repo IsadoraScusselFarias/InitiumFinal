@@ -1,0 +1,62 @@
+.bodyLogin {
+	background: url("/Initium2/javax.faces.resource/imagem/bg.jpg.xhtml") no-repeat center center fixed;
+	background-size: cover;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.wrapper img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.form-signin {
+  max-width: 370px;
+  max-height: 320px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 15px 35px 45px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+.btn-danger{
+	border-radius: 0px;
+	background-color:#DC0000;
+
+}
+.btn-danger:hover{
+	background-color:#AF0F0F;
+}
+
+.form-signin-heading,
+    .checkbox {
+	  margin-bottom: 10px;
+	  font-weight: normal;
+	  font-size: 14px;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+	  border-radius: 0px;
+	}
+
+	input[type="text"] {
+	  margin-bottom: 10px;
+	}
+
+	input[type="password"] {
+	  margin-bottom: 10px;
+	}
