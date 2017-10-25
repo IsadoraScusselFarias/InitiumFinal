@@ -25,11 +25,11 @@ public class Usuario  {
 	@Column(length = 50)
 	private byte[] senha;
 	
-	@Column()
-	private Boolean administrador;
+	@Column(nullable = false)
+	private Boolean administrador = false;
 
-	@Column( )
-	private Boolean statusUsuario;
+	@Column(nullable = false)
+	private Boolean statusUsuario = false;
 	
 	@Column
 	private Byte[] foto;
