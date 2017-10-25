@@ -14,6 +14,7 @@ import javax.inject.Named;
 import br.com.db1.dao.Transactional;
 import br.com.db1.dao.impl.UsuarioDao;
 import br.com.db1.model.Usuario;
+import br.com.db1.service.Criptografia;
 
 @ApplicationScoped
 @Named
@@ -21,12 +22,26 @@ public class UsuarioBean {
 
 	@Inject
 	private UsuarioDao dao;
+	
+	@Inject
+	private Criptografia criptografia;
 
 	private List<Usuario> list;
 
 	private String nomeUsuarioFiltrada;
 	
 	private Usuario usuario;
+	
+	private String senha;
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 
 	@PostConstruct
 	public void init() {
@@ -63,6 +78,9 @@ public class UsuarioBean {
 	}
 	@Transactional
 	public String salvar() {
+		if (this.usuario.getId() == null) {
+			this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
+	}
 		if (!dao.save(this.usuario)) {
 			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
 		} else {
@@ -105,5 +123,5 @@ public class UsuarioBean {
 		fc.addMessage(null, fm);
 
 	}
-
+	
 }
