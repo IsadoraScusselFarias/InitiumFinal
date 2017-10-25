@@ -1,5 +1,69 @@
-body {
-  background: #e8e8e8;
+.conteudoContainer{
+	position: relative;
+	float:left;
+	width:1050px;
+	border:1px solid grey;
+	min-height:600px;
+	margin-bottom:20px;
+	padding:5px;
+	background-color:white;
+	box-shadow: 5px 5px 5px #262626;
+	border-radius: .25rem;
+	color:black;
+}
+.container{
+	padding:50px 70px 50px 70px;
+}
+.barraSuperiorContainer{
+	background-color:grey;
+	padding:5px;
+	border-radius: .25rem;
+}
+.barraSuperiorContainer span{
+	margin-right:5px;
+}
+.tabela{
+	color:black;
+	min-width: 100%;
+	padding:5px;
+	margin-top:10px;
+}
+.tabela td{
+	border: 1px solid lightgrey;
+}
+.tabela tr:hover{
+	background-color: lightgrey;
+}
+.tabela th{
+	border: 1px solid lightgrey;
+	text-align:center;
+}
+.imagemTabela{
+	width:25px;
+}
+.centralizarTabela{
+	text-align:center;
+}
+.menuSuperior{
+	float:right;
+	width:400px;
+	text-align:right;
+	padding-right:10px;
+}
+.menuSuperior a{
+	color:white;
+}
+.espacoMenuSuperior{
+	padding:20px;
+	width:50px;
+}
+.footer{
+	clear:both;
+	margin-top:20px;
+	border:1px solid black;
+}
+body{
+  background: #50504E;
   margin: 0;
   font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #fff;
@@ -21,7 +85,7 @@ main {
   outline: none;
 }
 .menu .avatar {
-  background: #DB304E;
+  background: #DC0000;
   padding: 2em 0.5em;
   text-align: center;
 }
@@ -167,7 +231,7 @@ main {
     left: 100%;
     background: #5bc995;
   }
-  
+
   .menu .smartphone-menu-trigger:before,
   .menu .smartphone-menu-trigger:after {
     content: '';
@@ -195,4 +259,6 @@ main {
   .menu:focus .smartphone-menu-trigger {
     pointer-events: none;
   }
-}
+
+
+
