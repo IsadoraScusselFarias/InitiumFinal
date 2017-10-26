@@ -18,22 +18,22 @@ import br.com.db1.service.Criptografia;
 
 @ApplicationScoped
 @Named
-public class UsuarioBean {	
+public class UsuarioBean {
 
 	@Inject
 	private UsuarioDao dao;
-	
+
 	@Inject
 	private Criptografia criptografia;
 
 	private List<Usuario> list;
 
 	private String nomeUsuarioFiltrada;
-	
+
 	private Usuario usuario;
-	
+
 	private String senha;
-	
+
 	public String getSenha() {
 		return senha;
 	}
@@ -67,7 +67,7 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public List<Usuario> getList() {
 		return list;
 	}
@@ -85,13 +85,13 @@ public class UsuarioBean {
 			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
-			nomeUsuarioFiltrada = this.usuario.getNome(); 
+			nomeUsuarioFiltrada = this.usuario.getNome();
 			listarUsuario();
 		}
 		return "usuario";
 	}
 
-	
+
 	public String editar(Usuario usuario) {
 		this.usuario = dao.findById(usuario.getId());
 		return "cadastrarUsuario";
@@ -123,5 +123,5 @@ public class UsuarioBean {
 		fc.addMessage(null, fm);
 
 	}
-	
+
 }
