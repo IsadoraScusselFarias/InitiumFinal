@@ -12,7 +12,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.db1.dao.Transactional;
+import br.com.db1.dao.impl.TipoAvaliacaoDao;
 import br.com.db1.dao.impl.UsuarioDao;
+import br.com.db1.model.TipoAvaliacao;
 import br.com.db1.model.Usuario;
 import br.com.db1.service.Criptografia;
 
@@ -22,11 +24,16 @@ public class UsuarioBean {
 
 	@Inject
 	private UsuarioDao dao;
+	
+	@Inject
+	private TipoAvaliacaoDao tipoAvaliacaoDao;
 
 	@Inject
 	private Criptografia criptografia;
 
 	private List<Usuario> list;
+	
+	private List<TipoAvaliacao> listTipoAvaliacao;
 
 	private String nomeUsuarioFiltrada;
 
@@ -41,11 +48,32 @@ public class UsuarioBean {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	private void carregarTipoAvaliacao() {
+		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
+	}
 
+
+	public TipoAvaliacaoDao getTipoAvaliacaoDao() {
+		return tipoAvaliacaoDao;
+	}
+
+	public void setTipoAvaliacaoDao(TipoAvaliacaoDao tipoAvaliacaoDao) {
+		this.tipoAvaliacaoDao = tipoAvaliacaoDao;
+	}
+
+	public List<TipoAvaliacao> getListTipoAvaliacao() {
+		return listTipoAvaliacao;
+	}
+
+	public void setListTipoAvaliacao(List<TipoAvaliacao> listTipoAvaliacao) {
+		this.listTipoAvaliacao = listTipoAvaliacao;
+	}
 
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		carregarTipoAvaliacao();
 	}
 
 	private void zerarLista() {

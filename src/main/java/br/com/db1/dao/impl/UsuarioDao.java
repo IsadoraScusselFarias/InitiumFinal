@@ -13,7 +13,6 @@ import br.com.db1.model.Usuario;
 public class UsuarioDao implements DAO<Usuario> {
 
 	@Inject
-	
 	private EntityManager manager;
 
 	public List<Usuario> findAll() {
