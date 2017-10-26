@@ -57,4 +57,4 @@ public class ProvaDao implements DAO<Prova>{
 	}
 
 }
-}
+

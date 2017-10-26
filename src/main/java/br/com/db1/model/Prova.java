@@ -112,24 +112,3 @@ public class Prova implements Serializable{
 	
 	
 }
-	public void setAvaliacoes(List<TipoAvaliacao> avaliacoes) {
-		this.avaliacoes = avaliacoes;
-	}
-
-//	public List<Usuario> getUsuarios() {
-//		return usuarios;
-//	}
-//
-//	public void setUsuarios(List<Usuario> usuarios) {
-//		this.usuarios = usuarios;
-//	}
-//
-//	public List<Candidato> getCandidatos() {
-//		return candidatos;
-//	}
-//
-//	public void setCandidatos(List<Candidato> candidatos) {
-//		this.candidatos = candidatos;
-//	}
-
-}
