@@ -1,43 +1,62 @@
 package br.com.db1.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import java.util.Collection;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Id;
+import javax.inject.Named;
 
 import br.com.db1.dao.impl.ProvaDao;
 import br.com.db1.model.Prova;
-import br.com.db1.model.Uf;
 
+
+@ApplicationScoped
+@Named
 public class ProvaBean {
-
 	@Inject
 	private ProvaDao dao;
-
+	
+//	/* ************************************** */
+//	@Inject
+//	private TipoAvaliacaoDao tipoAvaliacaoDao;
+//	conection
+//	
+//	private List<TipoAvaliacao> listTipoAvaliacao;
+//	
+//	/* ************************************** */
+	
+	
 	private List<Prova> list;
-
-	private String nomeProvaFiltrada;
-
+	private String parecerProvaFiltrada;
 	private Prova prova;
-
-
+	
+	
+	
+	
+	public ProvaDao getDao() {
+		return dao;
+	}
+	public void setDao(ProvaDao dao) {
+		this.dao = dao;
+	}
 	public List<Prova> getList() {
 		return list;
 	}
 	public void setList(List<Prova> list) {
 		this.list = list;
 	}
-	public String getNomeProvaFiltrada() {
-		return nomeProvaFiltrada;
+	public String getParecerProvaFiltrada() {
+		return parecerProvaFiltrada;
 	}
-	public void setNomeProvaFiltrada(String nomeProvaFiltrada) {
-		this.nomeProvaFiltrada = nomeProvaFiltrada;
+	public void setParecerProvaFiltrada(String parecerProvaFiltrada) {
+		this.parecerProvaFiltrada = parecerProvaFiltrada;
 	}
 	public Prova getProva() {
 		return prova;
@@ -45,54 +64,61 @@ public class ProvaBean {
 	public void setProva(Prova prova) {
 		this.prova = prova;
 	}
+	
 	@PostConstruct
 	public void init() {
 		zerarLista();
+//		zerarListaTipoAvaliacao();
+//		carregarTipoAvaliacao();
 	}
+	
+//	private void carregarTipoAvaliacao() {
+//		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
+//	}
+//
+//	private void zerarListaTipoAvaliacao() {
+//		listTipoAvaliacao = new ArrayList<TipoAvaliacao>();
+//	}
+	
 	private void zerarLista() {
 		list = new ArrayList<Prova>();
 	}
 	
+	public String novo() {
+		this.prova= new Prova();
+		return "cadastrarProva";
+	}
+	
 	public String salvar() {
 		if (!dao.save(this.prova)) {
-			adicionarMensagem("Erro ao cadastrar a Prova.", FacesMessage.SEVERITY_ERROR);
+			adicionarMensagem("Erro ao cadastrar a prova.", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Prova salva com sucesso.", FacesMessage.SEVERITY_INFO);
-			nomeProvaFiltrada = this.prova.getParecer();
+			parecerProvaFiltrada = this.prova.getParecer();
 			listarProva();
-		}	return "prova";
+		}
+		return "prova";
 	}
-
+	
 	public String editar(Prova prova) {
 		this.prova = dao.findById(prova.getId());
 		return "cadastrarProva";
 	}
 
-	public String remover(Uf uf) {
-		if (!dao.delete(uf.getId())) {
-			adicionarMensagem("Erro ao remover a UF.", FacesMessage.SEVERITY_ERROR);
-		} else {
-			adicionarMensagem("UF removida com sucesso.", FacesMessage.SEVERITY_INFO);
-			listarProva();
-		}
-		return "uf";
-	}
-	
 	public String remover(Prova prova) {
 		if (!dao.delete(prova.getId())) {
-			adicionarMensagem("Erro ao remover a Prova.", FacesMessage.SEVERITY_ERROR);
+			adicionarMensagem("Erro ao remover a prova .", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Prova removida com sucesso.", FacesMessage.SEVERITY_INFO);
 			listarProva();
 		}
-		return "uf";
+		return "prova";
 	}
 
-	
 	public void listarProva() {
 		zerarLista();
-		if (!nomeProvaFiltrada.isEmpty()) {
-			list.addAll((Collection<? extends Prova>) dao.findById(prova.getId()));
+		if (!parecerProvaFiltrada.isEmpty()) {
+			list.addAll(dao.findByName(parecerProvaFiltrada));
 		} else {
 			list.addAll(dao.findAll());
 		}
@@ -106,5 +132,4 @@ public class ProvaBean {
 
 	}
 
-	
 }

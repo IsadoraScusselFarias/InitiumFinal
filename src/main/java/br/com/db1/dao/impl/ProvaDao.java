@@ -6,31 +6,31 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.db1.dao.DAO;
 import br.com.db1.dao.Transactional;
 import br.com.db1.model.Prova;
-import br.com.db1.model.Uf;
 
-public class ProvaDao {
+public class ProvaDao implements DAO<Prova>{
 
 	@Inject
 	private EntityManager manager;
 	
 	public List<Prova> findAll() {
-		return manager.createQuery("Select p from prova p").getResultList();
+		return manager.createQuery("Select p from Prova p").getResultList();
 	}
-	
+
 	public Prova findById(Long id) {
 		Query query = manager.createQuery("Select p from Prova p where p.id = :pId");
 		query.setParameter("pId", id);
 		return (Prova) query.getSingleResult();
 	}
-	
-	public List<Prova> findByName(Long id) {
-		Query query = manager.createQuery("Select p from Prova p where p.id like :pNome");
-		query.setParameter("pNome",  "%");
+
+	public List<Prova> findByName(String parecer) {
+		Query query = manager.createQuery("Select p from Prova p where p.parecer like:pParecer");
+		query.setParameter("pParecer", "%"+parecer+"%");
 		return query.getResultList();
 	}
-	
+
 	@Transactional
 	public boolean save(Prova prova) {
 		try {
@@ -54,7 +54,7 @@ public class ProvaDao {
 			return false;
 		}
 		return true;
-
 	}
 
+}
 }

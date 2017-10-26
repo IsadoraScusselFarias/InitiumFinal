@@ -1,6 +1,7 @@
 package br.com.db1.model;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,36 +15,37 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "prova", schema = "public")
-public class Prova {
-
+public class Prova implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column
-	private Date dataInicioCorrecao;
-	@Column
-	private Date dataFinalCorrecao;
+	
+	@Column(nullable = false, length = 50)
+	private String dataInicioCorrecao;
+	
+	@Column(nullable = false, length = 50)
+	private String dataFinalCorrecao;
+	
 	@Column
 	private String pontosFortes;
+	
 	@Column
 	private String pontosFracos;
+	
 	@Column
 	private String parecer;
+	
 	@Column
-	private String blob;
+	private byte[] anexo;
+	
 	@Column
-	private Integer Prazo;
+	private Integer prazo;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prova")
-	private List<TipoAvaliacao> avaliacoes;
-
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prova")
-//	private List<Usuario> usuarios;
-//
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prova")
-//	private List<Candidato> candidatos;
-
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "avaliacao_id", nullable = false)
+//	private Avaliacao avaliacao;
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,19 +54,19 @@ public class Prova {
 		this.id = id;
 	}
 
-	public Date getDataInicioCorrecao() {
+	public String getDataInicioCorrecao() {
 		return dataInicioCorrecao;
 	}
 
-	public void setDataInicioCorrecao(Date dataInicioCorrecao) {
+	public void setDataInicioCorrecao(String dataInicioCorrecao) {
 		this.dataInicioCorrecao = dataInicioCorrecao;
 	}
 
-	public Date getDataFinalCorrecao() {
+	public String getDataFinalCorrecao() {
 		return dataFinalCorrecao;
 	}
 
-	public void setDataFinalCorrecao(Date dataFinalCorrecao) {
+	public void setDataFinalCorrecao(String dataFinalCorrecao) {
 		this.dataFinalCorrecao = dataFinalCorrecao;
 	}
 
@@ -92,26 +94,24 @@ public class Prova {
 		this.parecer = parecer;
 	}
 
-	public String getBlob() {
-		return blob;
+	public byte[] getAnexo() {
+		return anexo;
 	}
 
-	public void setBlob(String blob) {
-		this.blob = blob;
+	public void setAnexo(byte[] anexo) {
+		this.anexo = anexo;
 	}
 
 	public Integer getPrazo() {
-		return Prazo;
+		return prazo;
 	}
 
 	public void setPrazo(Integer prazo) {
-		Prazo = prazo;
+		this.prazo = prazo;
 	}
-
-	public List<TipoAvaliacao> getAvaliacoes() {
-		return avaliacoes;
-	}
-
+	
+	
+}
 	public void setAvaliacoes(List<TipoAvaliacao> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
