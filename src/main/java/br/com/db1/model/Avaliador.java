@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario", schema = "public")
-public class Usuario  {
+@Table(name = "avaliador", schema = "public")
+public class Avaliador  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +25,11 @@ public class Usuario  {
 	@Column(length = 50)
 	private byte[] senha;
 	
-	@Column()
-	private Boolean administrador = false;
 
 	@Column(nullable = false)
-	private Boolean statusUsuario = false;
+	private Boolean statusAvaliador = false;
 	
-	@Column
-	private Byte[] foto;
-		
+	
 	public Long getId() {
 		return id;
 	}
@@ -65,27 +61,15 @@ public class Usuario  {
 		this.senha = senha;
 	}
 
-	public Boolean getAdministrador() {
-		return administrador;
+	
+
+	public Boolean getStatusAvaliador() {
+		return statusAvaliador;
 	}
 
-	public void setAdministrador(Boolean administrador) {
-		this.administrador = administrador;
+	public void setStatusAvaliador(Boolean statusAvaliador) {
+		this.statusAvaliador = statusAvaliador;
 	}
 
-	public Boolean getStatusUsuario() {
-		return statusUsuario;
-	}
-
-	public void setStatusUsuario(Boolean statusUsuario) {
-		this.statusUsuario = statusUsuario;
-	}
-
-	public Byte[] getFoto() {
-		return foto;
-	}
-
-	public void setFoto(Byte[] foto) {
-		this.foto = foto;
-	}
+	
 }
