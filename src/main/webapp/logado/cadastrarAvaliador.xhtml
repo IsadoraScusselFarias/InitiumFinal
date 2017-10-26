@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org /1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -11,32 +11,37 @@
 <h:body>
 	<h:form>
 		<div class="container">
-
-			<div class="row">
-				<h:outputLabel value="Nome:" for="campo-nome" />
-				<h:inputText value="#{avaliadorBean.usuario.nome}" id="campo-nome"
-					required="true" label="Nome"
-					validatorMessage="Digite somente letras" maxlength="50" />
-				<h:message for="campo-nome" style="color:red" />
-			</div>
-			<div class="row">
-				<h:outputLabel value="Email:" for="campo-email" />
-				<h:inputText value="#{avaliadorBean.usuario.email}" id="campo-email"
-					required="true" label="Email"
-					validatorMessage="Digite somente letras" maxlength="50" />
-				<h:message for="campo-email" style="color:red" />
-			</div>
-			<div class="row">
-				<h:outputLabel value="Senha:" for="campo-senha" />
+			<div class="formularioContainer">
+				<div class="row">
+					<div class="col-2 col-form-label">
+						<h:outputLabel value="Nome:" for="campo-nome" />
+					</div>
+					<div class="col-10">
+						<h:inputText value="#{usuarioBean.usuario.nome}" id="campo-nome"
+							required="true" label="Nome"
+							validatorMessage="Digite somente letras" maxlength="50" />
+						<h:message for="campo-nome" style="color:red" />
+					</div>
+				</div>
+				<div class="row">
+					<h:outputLabel value="Email:" for="campo-email" />
+					<h:inputText value="#{avaliadorBean.usuario.email}"
+						id="campo-email" required="true" label="Email"
+						validatorMessage="Digite somente letras" maxlength="50" />
+					<h:message for="campo-email" style="color:red" />
+				</div>
+				<div class="row">
+					<h:outputLabel value="Senha:" for="campo-senha" />
 					<h:inputSecret id="campo-senha" required="true" label="Senha"
 						rendered="#{empty avaliadorBean.usuario.id}"
 						value="#{avaliadorBean.usuario.senha}" />
-				<h:message for="campo-senha" style="color:red" />
-			</div>
-			
-			
-			<div class="row">
-				<h:commandButton value="Salvar" action="#{avaliadorBean.salvar}" />
+					<h:message for="campo-senha" style="color:red" />
+				</div>
+
+
+				<div class="row">
+					<h:commandButton value="Salvar" action="#{avaliadorBean.salvar}" />
+				</div>
 			</div>
 		</div>
 	</h:form>
