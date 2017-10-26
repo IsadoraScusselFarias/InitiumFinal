@@ -1,6 +1,5 @@
 package br.com.db1.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario", schema = "public")
-public class Usuario  {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +23,16 @@ public class Usuario  {
 
 	@Column(length = 50)
 	private byte[] senha;
-	
+
 	@Column()
 	private Boolean administrador = false;
 
 	@Column(nullable = false)
 	private Boolean statusUsuario = false;
-	
+
 	@Column
-	private Byte[] foto;
-		
+	private byte[] foto;
+
 	public Long getId() {
 		return id;
 	}
@@ -49,6 +48,7 @@ public class Usuario  {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -81,11 +81,12 @@ public class Usuario  {
 		this.statusUsuario = statusUsuario;
 	}
 
-	public Byte[] getFoto() {
+	public byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Byte[] foto) {
+	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
+
 }

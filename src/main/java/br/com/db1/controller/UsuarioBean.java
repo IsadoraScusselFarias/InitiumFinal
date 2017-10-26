@@ -46,6 +46,7 @@ public class UsuarioBean {
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		usuario = new Usuario();
 	}
 
 	private void zerarLista() {
