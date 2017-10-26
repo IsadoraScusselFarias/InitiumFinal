@@ -16,12 +16,21 @@
 	<div class="wrapper">
 		<h:messages />
 		<h:form class="form-signin">
-		<h:graphicImage value="resources/imagem/logo.png" />
-					<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario" label="Usuario" class="form-control" p:placeholder="Email" p:type="text"/>
-					<h:message for="campo-usuario" style="color:red" />
-					<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha" label="Senha" class="form-control" p:placeholder="Senha" p:type="password"/>
-					<h:message for="campo-senha" style="color:red" />
-					<h:commandButton value="Entrar" class="btn btn-danger btn-block" action="#{autenticacaoBean.autentica}" />
+		<div class="row">
+			<h:graphicImage library="imagem" name="logo.png"/>
+		</div>
+		<div class="row">
+			<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario" label="Usuario" class="form-control" p:placeholder="Email" p:type="text"/>
+			<h:message for="campo-usuario" style="color:red" />
+		</div>
+		<div class="row">
+			<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha" label="Senha" class="form-control" p:placeholder="Senha" p:type="password"/>
+			<h:message for="campo-senha" style="color:red" />
+		</div>
+		<div class="row">
+			<h:commandButton value="Entrar" class="btn btn-danger btn-block" action="#{autenticacaoBean.autentica}" />
+		</div>
+
 
 		</h:form>
 	</div>
