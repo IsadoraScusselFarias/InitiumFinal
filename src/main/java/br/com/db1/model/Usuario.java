@@ -16,20 +16,20 @@ public class Usuario  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String nome;
 
 	@Column(length = 50, nullable = false)
 	private String email;
 
-	@Column(length = 50, nullable = false)
-	private String senha;
+	@Column(length = 50)
+	private byte[] senha;
 	
-	@Column(nullable = false)
-	private Boolean admnistrador = false;
+	@Column()
+	private Boolean administrador;
 
-	@Column(nullable = false)
-	private Boolean statusUsuario = false;
+	@Column( )
+	private Boolean statusUsuario;
 	
 	@Column
 	private Byte[] foto;
@@ -57,20 +57,20 @@ public class Usuario  {
 		this.email = email;
 	}
 
-	public String getSenha() {
+	public byte[] getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(byte[] senha) {
 		this.senha = senha;
 	}
 
-	public Boolean getAdmnistrador() {
-		return admnistrador;
+	public Boolean getAdministrador() {
+		return administrador;
 	}
 
-	public void setAdmnistrador(Boolean admnistrador) {
-		this.admnistrador = admnistrador;
+	public void setAdministrador(Boolean administrador) {
+		this.administrador = administrador;
 	}
 
 	public Boolean getStatusUsuario() {
@@ -88,44 +88,4 @@ public class Usuario  {
 	public void setFoto(Byte[] foto) {
 		this.foto = foto;
 	}
-
-
-	
-/*
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		return true;
-	}
-*/
 }

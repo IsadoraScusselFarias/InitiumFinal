@@ -1,11 +1,15 @@
 package br.com.db1.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,19 @@ public class TipoAvaliacao implements Serializable {
 	
 	@Column(length = 2, nullable = false)
 	private Integer prazoPadrao;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
+	private List<Criterio> criterio;
+	
+	
+	
+	public List<Criterio> getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(List<Criterio> criterio) {
+		this.criterio = criterio;
+	}
 
 	public Integer getPrazoPadrao() {
 		return prazoPadrao;
