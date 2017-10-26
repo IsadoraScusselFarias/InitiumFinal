@@ -25,7 +25,7 @@ public class Usuario  {
 	@Column(length = 50)
 	private byte[] senha;
 	
-	@Column(nullable = false)
+	@Column()
 	private Boolean administrador = false;
 
 	@Column(nullable = false)
