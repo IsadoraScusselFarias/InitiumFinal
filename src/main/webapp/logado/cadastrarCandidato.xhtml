@@ -8,8 +8,11 @@
 	<ui:define name="conteudo">
 		<h:form>
 			<div class="container">
+			<div class="linha">
+				<h3>Cadastro de Candidato</h3>
+			</div>
 			<div class="formularioContainer">
-					<div class="row">
+				<div class="row">
 					<div class="col-2 col-form-label">
 						<h:outputLabel value="Nome:" for="campo-candidato" />
 					</div>
@@ -43,16 +46,15 @@
 				</div>
 				<div class="row">
 					<div class="col-2 col-form-label">
-						<h:outputLabel value="Informacoes:" for="campo-candidato" />
+						<h:outputLabel value="Informações:" for="campo-candidato" />
 					</div>
 					<div class="col-10">
-						<h:inputText value="#{candidatoBean.candidato.informacoes}"
-							id="campo-informacoes" required="true" label="candidato">
-						</h:inputText>
+						<h:inputTextarea cols="30" rows="10" value="#{candidatoBean.candidato.informacoes}"
+							id="campo-informacoes" required="true" label="candidato" />
 					</div>
 				</div>
 				<div class="row">
-					<h:commandButton value="Salvar" action="#{candidatoBean.salvar}" />
+					<div><h:commandButton value="Salvar" action="#{candidatoBean.salvar}" class="btn" /></div>
 				</div>
 			</div>
 

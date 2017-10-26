@@ -25,6 +25,10 @@
 							<h:commandButton value="Cadastrar Candidato" action="candidato"
 								class="btn btn-default" />
 						</div>
+						<div id="col-5">
+							<h:commandButton value="Cadastrar Usuario" action="usuario"
+								class="btn btn-default" />
+						</div>
 						<!-- *************************************************************************** -->
 						<div id="col-5">
 							<h:commandButton value="Cidade" action="cidade"
