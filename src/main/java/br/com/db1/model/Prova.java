@@ -15,31 +15,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "prova", schema = "public")
-public class Prova implements Serializable{
+public class Prova {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = true, length = 50)
 	private String dataInicioCorrecao;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = true, length = 50)
 	private String dataFinalCorrecao;
 	
-	@Column
+	@Column(nullable = true)
 	private String pontosFortes;
 	
-	@Column
+	@Column(nullable = true)
 	private String pontosFracos;
 	
-	@Column
+	@Column(nullable = true)
 	private String parecer;
 	
-	@Column
-	private byte[] anexo;
+	@Column(nullable = true)
+	private String anexo;
 	
-	@Column
+	@Column(nullable = true)
 	private Integer prazo;
 
 //	@ManyToOne(fetch = FetchType.LAZY)
@@ -94,11 +94,11 @@ public class Prova implements Serializable{
 		this.parecer = parecer;
 	}
 
-	public byte[] getAnexo() {
+	public String getAnexo() {
 		return anexo;
 	}
 
-	public void setAnexo(byte[] anexo) {
+	public void setAnexo(String anexo) {
 		this.anexo = anexo;
 	}
 

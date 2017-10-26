@@ -33,6 +33,7 @@ public class Usuario  {
 	
 	@Column
 	private Byte[] foto;
+
 		
 	public Long getId() {
 		return id;
