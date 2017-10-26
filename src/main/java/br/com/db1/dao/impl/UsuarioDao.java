@@ -41,6 +41,7 @@ public class UsuarioDao implements DAO<Usuario> {
 				manager.persist(usuario);
 			}
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;

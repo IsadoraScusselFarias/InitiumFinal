@@ -32,7 +32,13 @@ public class Usuario  {
 	private Boolean statusUsuario = false;
 	
 	@Column
-	private Byte[] foto;
+	private byte[] foto;
+	
+	@Column(name = "nomeArquivo", nullable = false, length = 50)
+	private String nomeArquivo;
+
+	@Column(name = "extensao", nullable = false, length = 10)
+	private String extensaoArquivo;
 		
 	public Long getId() {
 		return id;
@@ -80,12 +86,28 @@ public class Usuario  {
 	public void setStatusUsuario(Boolean statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
-
-	public Byte[] getFoto() {
+	
+	public byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Byte[] foto) {
-		this.foto = foto;
+	public void setFoto(byte[] arquivoByte) {
+		this.foto = arquivoByte;
+	}
+
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+
+	public String getExtensaoArquivo() {
+		return extensaoArquivo;
+	}
+
+	public void setExtensaoArquivo(String extensaoArquivo) {
+		this.extensaoArquivo = extensaoArquivo;
 	}
 }

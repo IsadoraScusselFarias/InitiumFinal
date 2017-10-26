@@ -1,5 +1,6 @@
 package br.com.db1.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,30 +11,51 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
-import br.com.db1.dao.Transactional;
+import org.apache.commons.io.IOUtils;
+
 import br.com.db1.dao.impl.UsuarioDao;
 import br.com.db1.model.Usuario;
 import br.com.db1.service.Criptografia;
 
 @ApplicationScoped
 @Named
-public class UsuarioBean {
+public class UsuarioBean {	
 
 	@Inject
 	private UsuarioDao dao;
-
+	
 	@Inject
 	private Criptografia criptografia;
 
 	private List<Usuario> list;
 
 	private String nomeUsuarioFiltrada;
-
+	
 	private Usuario usuario;
-
+	
 	private String senha;
+	
+	private Part arquivoUpado;
+	
+	private String nomeArquivoFiltrado;
 
+	public String getNomeArquivoFiltrado() {
+		return nomeArquivoFiltrado;
+	}
+
+	public void setNomeArquivoFiltrado(String nomeArquivoFiltrado) {
+		this.nomeArquivoFiltrado = nomeArquivoFiltrado;
+	}
+
+	public Part getArquivoUpado() {
+		return arquivoUpado;
+	}
+
+	public void setArquivoUpado(Part arquivoUpado) {
+		this.arquivoUpado = arquivoUpado;
+	}
 	public String getSenha() {
 		return senha;
 	}
@@ -46,6 +68,32 @@ public class UsuarioBean {
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		usuario = new Usuario();
+	}
+	
+	public String getNomeArquivo() {
+		String header = arquivoUpado.getHeader("content-disposition");
+		if (header == null)
+			return "";
+		for (String headerPart : header.split(";")) {
+			if (headerPart.trim().startsWith("filename")) {
+				return headerPart.substring(headerPart.indexOf('=') + 1).trim().replace("\"", "");
+			}
+		}
+		return "";
+	}
+
+	public void importa() {
+		try {
+			this.usuario.setNomeArquivo(getNomeArquivo());
+			this.usuario.setExtensaoArquivo(arquivoUpado.getContentType());
+
+			byte[] arquivoByte = IOUtils.toByteArray(arquivoUpado.getInputStream());
+			this.usuario.setFoto(arquivoByte);
+
+		} catch (IOException e) {
+			adicionarMensagem("Erro ao enviar o arquivo " + e.getMessage(), FacesMessage.SEVERITY_ERROR);
+		}
 	}
 
 	private void zerarLista() {
@@ -67,7 +115,7 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
 	public List<Usuario> getList() {
 		return list;
 	}
@@ -76,8 +124,10 @@ public class UsuarioBean {
 		this.usuario = new Usuario();
 		return "cadastrarUsuario";
 	}
-	@Transactional
+	
 	public String salvar() {
+
+		importa();
 		if (this.usuario.getId() == null) {
 			this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
 	}
@@ -85,13 +135,13 @@ public class UsuarioBean {
 			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
-			nomeUsuarioFiltrada = this.usuario.getNome();
+			nomeUsuarioFiltrada = this.usuario.getNome(); 
 			listarUsuario();
 		}
 		return "usuario";
 	}
 
-
+	
 	public String editar(Usuario usuario) {
 		this.usuario = dao.findById(usuario.getId());
 		return "cadastrarUsuario";
@@ -123,5 +173,5 @@ public class UsuarioBean {
 		fc.addMessage(null, fm);
 
 	}
-
+	
 }

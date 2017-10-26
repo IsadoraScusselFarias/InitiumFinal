@@ -6,7 +6,7 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
-		<h:form>
+		<h:form enctype="multipart/form-data" prependId="false">
 			<div class="container">
 				<div class="linha">
 					<h3>Cadastro de Usuário</h3>
@@ -46,6 +46,13 @@
 							<h:message for="campo-senha" style="color:red" />
 						</div>
 					</div>
+					<div class="form-group">
+					<h:outputLabel value="Foto:" for="campo-foto" />
+					<h:inputFile id="campo-foto"
+						required="true" label="Foto"
+						requiredMessage="Arquivo não selecionado!!" />
+					<h:message for="campo-foto" style="color:red" />
+				</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Administrador" for="campo-administrador" />
