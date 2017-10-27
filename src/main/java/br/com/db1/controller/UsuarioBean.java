@@ -159,7 +159,7 @@ public class UsuarioBean {
 
 	public void listarUsuario() {
 		zerarLista();
-		if (!nomeUsuarioFiltrada.isEmpty()) {
+		if (nomeUsuarioFiltrada != null) {
 			list.addAll(dao.findByName(nomeUsuarioFiltrada));
 		} else {
 			list.addAll(dao.findAll());

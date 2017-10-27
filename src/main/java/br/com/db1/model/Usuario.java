@@ -31,13 +31,13 @@ public class Usuario  {
 	@Column(nullable = false)
 	private Boolean statusUsuario = false;
 	
-	@Column
+	@Column(nullable = true)
 	private byte[] foto;
 	
-	@Column(name = "nomeArquivo", nullable = false, length = 50)
+	@Column(name = "nomeArquivo", nullable = true, length = 50)
 	private String nomeArquivo;
 
-	@Column(name = "extensao", nullable = false, length = 10)
+	@Column(name = "extensao", nullable = true, length = 10)
 	private String extensaoArquivo;
 		
 	public Long getId() {
