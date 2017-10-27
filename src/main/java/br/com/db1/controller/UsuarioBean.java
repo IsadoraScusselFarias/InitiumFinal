@@ -37,6 +37,16 @@ public class UsuarioBean {
 	
 	private String senha;
 	
+	private String confirmarSenha;
+	
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
+
 	private Part arquivoUpado;
 	
 	private String nomeArquivoFiltrado;
@@ -128,6 +138,7 @@ public class UsuarioBean {
 	public String salvar() {
 
 		importa();
+		if(senha.equals(confirmarSenha)) {
 		if (this.usuario.getId() == null) {
 			this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
 	}
@@ -138,9 +149,12 @@ public class UsuarioBean {
 			nomeUsuarioFiltrada = this.usuario.getNome(); 
 			listarUsuario();
 		}
+		}else {
+			adicionarMensagem("As senhas não são iguais.", FacesMessage.SEVERITY_INFO);
+		}
 		return "usuario";
 	}
-
+	
 	
 	public String editar(Usuario usuario) {
 		this.usuario = dao.findById(usuario.getId());

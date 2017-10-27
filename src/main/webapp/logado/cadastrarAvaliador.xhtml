@@ -33,12 +33,25 @@
 						value="#{avaliadorBean.usuario.senha}" />
 				<h:message for="campo-senha" style="color:red" />
 			</div>
+			<div class="row">
+							<div class="col-2 col-form-label">
+								<h:outputLabel value="Confirmar senha:" for="campo-senha2" />
+							</div>
+							<div class="col-10">
+								<h:inputSecret id="campo-senha2" required="true" label="Senha2"
+								validatorMessage = "Senhas incorretas"
+									rendered="#{empty usuarioBean.usuario.id}"
+									value="#{usuarioBean.confirmarSenha}" />
+								<h:message for="campo-senha2" style="color:red" />
+							</div>
+						</div>
+					</div>
 			
 			
 			<div class="row">
 				<h:commandButton value="Salvar" action="#{avaliadorBean.salvar}" />
 			</div>
-		</div>
+		
 	</h:form>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
 		type="application/javascript" />
