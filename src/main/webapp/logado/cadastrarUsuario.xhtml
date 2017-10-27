@@ -22,7 +22,6 @@
 								validatorMessage="Digite somente letras" maxlength="50" />
 							<h:message for="campo-nome" style="color:red" />
 						</div>
-
 					</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
@@ -75,6 +74,20 @@
 						</div>
 					</div>
 
+					<div class="row">
+						<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+						<h:selectOneMenu value="#{usuarioBean.usuario.tipoAvaliacao}"
+							id="campo-tipoAvaliacao"
+							requiredMessage="Tipo avaliacao obrigatorio"
+							label="Tipo Avaliacao" required="false">
+							<f:selectItem itemValue=""
+								itemLabel="Selecione um tipo de avaliacao" />
+							<f:selectItems value="#{usuarioBean.listTipoAvaliacao}"
+								var="tipoAvaliacao" itemLabel="#{tipoAvaliacao.nome}"
+								itemValue="#{tipoAvaliacao}" />
+						</h:selectOneMenu>
+						<h:message for="campo-tipoAvaliacao" style="color:red" />
+					</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Usuario Inativo" for="campo-status" />

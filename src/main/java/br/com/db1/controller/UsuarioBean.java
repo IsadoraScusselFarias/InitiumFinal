@@ -15,30 +15,37 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 
+import br.com.db1.dao.impl.TipoAvaliacaoDao;
 import br.com.db1.dao.impl.UsuarioDao;
+import br.com.db1.model.TipoAvaliacao;
 import br.com.db1.model.Usuario;
 import br.com.db1.service.Criptografia;
 
 @ApplicationScoped
 @Named
-public class UsuarioBean {	
+public class UsuarioBean {
 
 	@Inject
 	private UsuarioDao dao;
-	
+
+	@Inject
+	private TipoAvaliacaoDao tipoAvaliacaoDao;
+
 	@Inject
 	private Criptografia criptografia;
 
 	private List<Usuario> list;
 
+	private List<TipoAvaliacao> listTipoAvaliacao;
+
 	private String nomeUsuarioFiltrada;
-	
+
 	private Usuario usuario;
-	
+
 	private String senha;
-	
+
 	private String confirmarSenha;
-	
+
 	public String getConfirmarSenha() {
 		return confirmarSenha;
 	}
@@ -48,7 +55,7 @@ public class UsuarioBean {
 	}
 
 	private Part arquivoUpado;
-	
+
 	private String nomeArquivoFiltrado;
 
 	public String getNomeArquivoFiltrado() {
@@ -66,6 +73,7 @@ public class UsuarioBean {
 	public void setArquivoUpado(Part arquivoUpado) {
 		this.arquivoUpado = arquivoUpado;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -74,13 +82,33 @@ public class UsuarioBean {
 		this.senha = senha;
 	}
 
+	private void carregarTipoAvaliacao() {
+		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
+	}
+
+	public TipoAvaliacaoDao getTipoAvaliacaoDao() {
+		return tipoAvaliacaoDao;
+	}
+
+	public void setTipoAvaliacaoDao(TipoAvaliacaoDao tipoAvaliacaoDao) {
+		this.tipoAvaliacaoDao = tipoAvaliacaoDao;
+	}
+
+	public List<TipoAvaliacao> getListTipoAvaliacao() {
+		return listTipoAvaliacao;
+	}
+
+	public void setListTipoAvaliacao(List<TipoAvaliacao> listTipoAvaliacao) {
+		this.listTipoAvaliacao = listTipoAvaliacao;
+	}
 
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		carregarTipoAvaliacao();
 		usuario = new Usuario();
 	}
-	
+
 	public String getNomeArquivo() {
 		String header = arquivoUpado.getHeader("content-disposition");
 		if (header == null)
@@ -125,7 +153,7 @@ public class UsuarioBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public List<Usuario> getList() {
 		return list;
 	}
@@ -134,28 +162,27 @@ public class UsuarioBean {
 		this.usuario = new Usuario();
 		return "cadastrarUsuario";
 	}
-	
+
 	public String salvar() {
 
 		importa();
-		if(senha.equals(confirmarSenha)) {
-		if (this.usuario.getId() == null) {
-			this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
-	}
-		if (!dao.save(this.usuario)) {
-			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
+		if (senha.equals(confirmarSenha)) {
+			if (this.usuario.getId() == null) {
+				this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
+			}
+			if (!dao.save(this.usuario)) {
+				adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
+			} else {
+				adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
+				nomeUsuarioFiltrada = this.usuario.getNome();
+				listarUsuario();
+			}
 		} else {
-			adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
-			nomeUsuarioFiltrada = this.usuario.getNome(); 
-			listarUsuario();
-		}
-		}else {
 			adicionarMensagem("As senhas não são iguais.", FacesMessage.SEVERITY_INFO);
 		}
 		return "usuario";
 	}
-	
-	
+
 	public String editar(Usuario usuario) {
 		this.usuario = dao.findById(usuario.getId());
 		return "cadastrarUsuario";
@@ -187,5 +214,5 @@ public class UsuarioBean {
 		fc.addMessage(null, fm);
 
 	}
-	
+
 }

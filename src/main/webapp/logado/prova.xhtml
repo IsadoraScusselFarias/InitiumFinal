@@ -6,7 +6,7 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
-	<h1>PROVAS</h1>
+		<h1>PROVAS</h1>
 		<h:form>
 			<div class="barraSuperiorContainer">
 				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
@@ -14,7 +14,8 @@
 						value="#{provaBean.parecerProvaFiltrada}" /></span> <span><h:commandButton
 						class="btn btn-info" value="Filtrar"
 						action="#{provaBean.listarProva}" /></span> <span><h:commandButton
-						value="Cadastrar" class=" btn btn-success" action="#{provaBean.novo}" /></span>
+						value="Cadastrar" class=" btn btn-success"
+						action="#{provaBean.novo}" /></span>
 			</div>
 			<div class="alert-success">
 				<h:messages />
@@ -28,19 +29,14 @@
 							<h:column>
 								<f:facet name="header"> ID</f:facet>#{item.id}</h:column>
 							<h:column>
-								<f:facet name="header">DIC</f:facet>#{item.dataInicioCorrecao}</h:column>
-							<h:column>
-								<f:facet name="header">DFC</f:facet>#{item.dataFinalCorrecao}</h:column>
-							<h:column>
-								<f:facet name="header">PFO</f:facet>#{item.pontosFortes}</h:column>
-							<h:column>
-								<f:facet name="header">PFR</f:facet>#{item.pontosFracos}</h:column>
-							<h:column>
-								<f:facet name="header">Parecer</f:facet>#{item.parecer}</h:column>
+								<f:facet name="header">Prazo</f:facet>#{item.prazo}</h:column>
+							<!-- Visualizar -->
 							<h:column>
 								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
 							<h:column>
-								<f:facet name="header">Prazo</f:facet>#{item.prazo}</h:column>
+								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
+							<h:column>
+								<f:facet name="header">Candidato</f:facet>#{item.candidato.nome}</h:column>
 
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
