@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario", schema = "public")
-public class Usuario  {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +27,13 @@ public class Usuario  {
 
 	@Column(length = 50)
 	private byte[] senha;
-	
+
 	@Column()
 	private Boolean administrador = false;
 
 	@Column(nullable = false)
 	private Boolean statusUsuario = false;
-	
+
 	@Column
 	private Byte[] foto;
 	
@@ -65,6 +65,7 @@ public class Usuario  {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -104,4 +105,5 @@ public class Usuario  {
 	public void setFoto(Byte[] foto) {
 		this.foto = foto;
 	}
+
 }

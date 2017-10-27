@@ -20,7 +20,7 @@ import br.com.db1.service.Criptografia;
 
 @ApplicationScoped
 @Named
-public class AvaliadorBean {	
+public class AvaliadorBean  {	
 
 	@Inject
 	private UsuarioDao dao;
@@ -74,6 +74,7 @@ public class AvaliadorBean {
 	public void init() {
 		zerarLista();
 		carregarTipoAvaliacao();
+		usuario = new Usuario();
 	}
 
 	private void zerarLista() {
@@ -113,6 +114,8 @@ public class AvaliadorBean {
 			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
+			this.usuario=new Usuario();
+			nomeUsuarioFiltrada = ""; 
 			nomeUsuarioFiltrada = this.usuario.getNome(); 
 			listarUsuario();
 		}

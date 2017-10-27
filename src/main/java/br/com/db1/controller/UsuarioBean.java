@@ -74,6 +74,7 @@ public class UsuarioBean {
 	public void init() {
 		zerarLista();
 		carregarTipoAvaliacao();
+		usuario = new Usuario();
 	}
 
 	private void zerarLista() {

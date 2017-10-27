@@ -8,6 +8,7 @@ public interface DAO<T> {
 	T findById(Long id);
 
 	List<T> findByName(String name);
+	
 
 	boolean save(T t);
 
