@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Cadastrar Avaliador</title>
@@ -27,7 +28,9 @@
 					<h:outputLabel value="Email:" for="campo-email" />
 					<h:inputText value="#{avaliadorBean.usuario.email}"
 						id="campo-email" required="true" label="Email"
-						validatorMessage="Digite somente letras" maxlength="50" />
+						validatorMessage="Digite somente letras" maxlength="50" >
+					<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
 					<h:message for="campo-email" style="color:red" />
 				</div>
 		</div>
