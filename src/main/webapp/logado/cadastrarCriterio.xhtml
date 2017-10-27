@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Cadastrar Criterio</title>
@@ -16,7 +17,7 @@
 			<div class="row">
 				<h:outputLabel value="Descricao:" for="campo-descricao" />
 				<h:inputText value="#{criterioBean.criterio.descricao}"
-					id="campo-descricao" required="true" label="Descricao"
+					id="campo-descricao" required="true" label="Descricao" p:type="text"
 					maxlength="50">
 				</h:inputText>
 				<h:message for="campo-descricao" style="color:red" />

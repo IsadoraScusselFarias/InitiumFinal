@@ -19,7 +19,9 @@
 						<div class="col-10">
 							<h:inputText value="#{tipoAvaliacaoBean.tipoAvaliacao.nome}"
 								id="campo-nome" required="true" label="Nome"
-								validatorMessage="Digite somente letras" maxlength="20" />
+								validatorMessage="Digite somente letras" maxlength="20">
+								<f:validateRegex pattern="^.{1,20}" />
+								</h:inputText>
 							<h:message for="campo-nome" style="color:red" />
 						</div>
 					</div>
@@ -31,7 +33,9 @@
 							<h:inputText
 								value="#{tipoAvaliacaoBean.tipoAvaliacao.prazoPadrao}"
 								id="campo-prazoPadrao" required="true" label="Prazo Padrao"
-								validatorMessage="Digite somente numeros" maxlength="2" />
+								validatorMessage="Digite somente numeros" maxlength="2">
+								<f:validateRegex pattern="^.{1,2}" />
+							</h:inputText>
 							<h:message for="campo-nome" style="color:red" />
 						</div>
 					</div>

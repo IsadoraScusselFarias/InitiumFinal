@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org /1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Cadastrar Avaliador</title>
@@ -15,22 +16,28 @@
 			<div class="row">
 				<h:outputLabel value="Nome:" for="campo-nome" />
 				<h:inputText value="#{avaliadorBean.usuario.nome}" id="campo-nome"
-					required="true" label="Nome"
-					validatorMessage="Digite somente letras" maxlength="50" />
+					required="true" label="Nome" p:type="text"
+					validatorMessage="Digite somente letras" maxlength="50">
+					<f:validateRegex pattern="^[a-zA-Z]+$"/>
+					</h:inputText>
 				<h:message for="campo-nome" style="color:red" />
 			</div>
 			<div class="row">
 				<h:outputLabel value="Email:" for="campo-email" />
 				<h:inputText value="#{avaliadorBean.usuario.email}" id="campo-email"
-					required="true" label="Email"
-					validatorMessage="Digite somente letras" maxlength="50" />
-				<h:message for="campo-email" style="color:red" />
+					required="true" label="Email" p:type="email"
+					maxlength="50">
+					<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
+					<h:message for="campo-email" style="color:red" />
 			</div>
 			<div class="row">
 				<h:outputLabel value="Senha:" for="campo-senha" />
-					<h:inputSecret id="campo-senha" required="true" label="Senha"
+					<h:inputSecret id="campo-senha" required="true" label="Senha" p:type="password"
 						rendered="#{empty avaliadorBean.usuario.id}"
-						value="#{avaliadorBean.usuario.senha}" />
+						value="#{avaliadorBean.usuario.senha}">
+						<f:validateRegex pattern=".{8,}" />
+						</h:inputSecret>
 				<h:message for="campo-senha" style="color:red" />
 			</div>
 			

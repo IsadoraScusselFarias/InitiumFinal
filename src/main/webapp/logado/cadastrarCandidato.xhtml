@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="base/template.xhtml">
 
@@ -32,7 +33,7 @@
 						</div>
 						<div class="col-10">
 							<h:inputText value="#{candidatoBean.candidato.email}"
-								id="campo-email" required="true" label="candidato" validatorMessage="Digite um email válido! Exemplo: fulaninho@fulano.com">
+								id="campo-email" required="true" label="candidato" p:type="email">
 								 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 							</h:inputText>
 							<span><h:message for="campo-email" class="alert-danger erro" /></span>
@@ -57,7 +58,7 @@
 						</div>
 						<div class="col-10">
 							<h:inputTextarea cols="30" rows="10" value="#{candidatoBean.candidato.informacoes}"
-								id="campo-informacoes" required="true" label="Informações:" />
+								id="campo-informacoes" required="true" label="Informações:" p:type="text"/>
 						</div>
 						<span><h:message for="campo-informacoes" class="alert-danger erro" /></span>
 					</div>

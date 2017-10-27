@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="base/template.xhtml">
 
@@ -30,8 +31,10 @@
 						</div>
 						<div class="col-10">
 							<h:inputText value="#{usuarioBean.usuario.email}"
-								id="campo-email" required="true" label="Email"
-								validatorMessage="Digite somente letras" maxlength="50" />
+								id="campo-email" required="true" label="Email" p:type="email"
+								maxlength="50">
+								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								</h:inputText>
 							<h:message for="campo-email" style="color:red" />
 						</div>
 					</div>
