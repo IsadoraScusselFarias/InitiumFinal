@@ -6,46 +6,44 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
-		<div class="cabecalhoNovo">
-			<h3>Avaliação</h3>
-		</div>
+	<h1>PROVAS</h1>
 		<h:form>
 			<div class="barraSuperiorContainer">
-				<span><h:outputLabel value="Pesquisar: " /></span> <span><h:inputText
-						id="nomeUsuarioFiltrada"
-						value="#{usuarioBean.nomeUsuarioFiltrada}" class="col-sm-8" /></span> <span><h:commandButton
+				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
+						id="parecerProvaFiltrada" class="col-sm-8"
+						value="#{provaBean.parecerProvaFiltrada}" /></span> <span><h:commandButton
 						class="btn btn-info" value="Filtrar"
-						action="#{usuarioBean.listarUsuario}" /></span> <span><h:commandButton
-						value="Cadastrar" class=" btn btn-success"
-						action="#{usuarioBean.novo}" /> </span>
+						action="#{provaBean.listarProva}" /></span> <span><h:commandButton
+						value="Cadastrar" class=" btn btn-success" action="#{provaBean.novo}" /></span>
 			</div>
 			<div class="alert-success">
 				<h:messages />
 			</div>
 			<div class="container">
 				<div class="row">
-					<h:dataTable value="#{usuarioBean.list}" var="item"
-						rendered="#{not empty usuarioBean.list}"
+					<h:dataTable value="#{provaBean.list}" var="item"
+						rendered="#{not empty provaBean.list}"
 						class="table table-hover table-bordered thead-inverse">
 						<thead>
 							<h:column>
-								<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+								<f:facet name="header"> ID</f:facet>#{item.id}</h:column>
 							<h:column>
-								<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
+								<f:facet name="header">DIC</f:facet>#{item.dataInicioCorrecao}</h:column>
 							<h:column>
-								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
+								<f:facet name="header">DFC</f:facet>#{item.dataFinalCorrecao}</h:column>
 							<h:column>
-								<f:facet name="header">Email</f:facet>#{item.email}</h:column>
+								<f:facet name="header">PFO</f:facet>#{item.pontosFortes}</h:column>
 							<h:column>
-								<f:facet name="header">Administrador</f:facet>#{item.administrador}</h:column>
+								<f:facet name="header">PFR</f:facet>#{item.pontosFracos}</h:column>
 							<h:column>
-								<f:facet name="header">Usuários Ativos</f:facet>#{item.statusUsuario}</h:column>
+								<f:facet name="header">Parecer</f:facet>#{item.parecer}</h:column>
 							<h:column>
-								<f:facet name="header">Foto</f:facet>#{item.foto}</h:column>
+								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
+				
 
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
-									<h:commandLink action="#{usuarioBean.editar(item)}">
+									<h:commandLink action="#{provaBean.editar(item)}">
 										<h:graphicImage library="imagem" name="editar.svg"
 											alt="Editar" title="Editar" />
 									</h:commandLink>
@@ -53,7 +51,7 @@
 							</h:column>
 							<h:column>
 								<div class="centralizarTabela">
-									<h:commandLink action="#{usuarioBean.remover(item)}">
+									<h:commandLink action="#{provaBean.remover(item)}">
 										<h:graphicImage library="imagem" name="lixo.svg" alt="Remover"
 											title="Remover" />
 									</h:commandLink>
@@ -62,9 +60,11 @@
 						</thead>
 					</h:dataTable>
 				</div>
+
 			</div>
 		</h:form>
 	</ui:define>
 
 </ui:composition>
+
 </html>

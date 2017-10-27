@@ -40,6 +40,7 @@ public class ProvaDao implements DAO<Prova>{
 				manager.persist(prova);
 			}
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;

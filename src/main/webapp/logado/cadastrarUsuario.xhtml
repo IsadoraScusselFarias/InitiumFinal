@@ -7,13 +7,13 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
-		<h:form>
+		<h:form enctype="multipart/form-data" prependId="false">
 			<div class="container">
 				<div class="linha">
 					<h3>Cadastro de Usuário</h3>
 				</div>
 				<div class="formularioContainer">
-							<div class="row">
+					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Nome:" for="campo-nome" />
 						</div>
@@ -23,7 +23,6 @@
 								validatorMessage="Digite somente letras" maxlength="50" />
 							<h:message for="campo-nome" style="color:red" />
 						</div>
-
 					</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
@@ -48,6 +47,24 @@
 								value="#{usuarioBean.senha}" />
 							<h:message for="campo-senha" style="color:red" />
 						</div>
+						<div class="row">
+							<div class="col-2 col-form-label">
+								<h:outputLabel value="Confirmar senha:" for="campo-senha2" />
+							</div>
+							<div class="col-10">
+								<h:inputSecret id="campo-senha2" required="true" label="Senha2"
+									rendered="#{empty usuarioBean.usuario.id}"
+									value="#{usuarioBean.confirmarSenha}" />
+								<h:message for="campo-senha" style="color:red" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Foto:" for="campo-foto" />
+						<h:inputFile id="campo-foto" required="true" label="Foto"
+							value="#{usuarioBean.arquivoUpado}"
+							requiredMessage="Arquivo não selecionado!!" />
+						<h:message for="campo-foto" style="color:red" />
 					</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
@@ -58,8 +75,22 @@
 								value="#{usuarioBean.usuario.administrador}"
 								id="campo-administrador" />
 						</div>
- 			</div>
-			
+					</div>
+
+					<div class="row">
+						<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+						<h:selectOneMenu value="#{usuarioBean.usuario.tipoAvaliacao}"
+							id="campo-tipoAvaliacao"
+							requiredMessage="Tipo avaliacao obrigatorio"
+							label="Tipo Avaliacao" required="false">
+							<f:selectItem itemValue=""
+								itemLabel="Selecione um tipo de avaliacao" />
+							<f:selectItems value="#{usuarioBean.listTipoAvaliacao}"
+								var="tipoAvaliacao" itemLabel="#{tipoAvaliacao.nome}"
+								itemValue="#{tipoAvaliacao}" />
+						</h:selectOneMenu>
+						<h:message for="campo-tipoAvaliacao" style="color:red" />
+					</div>
 					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Usuario Inativo" for="campo-status" />
@@ -70,7 +101,8 @@
 						</div>
 					</div>
 					<div class="row">
-						<h:commandButton value="Salvar" class="btn" action="#{usuarioBean.salvar}" />
+						<h:commandButton value="Salvar" class="btn"
+							action="#{usuarioBean.salvar}" />
 					</div>
 				</div>
 			</div>
