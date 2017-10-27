@@ -1,5 +1,6 @@
 package br.com.db1.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,8 +32,9 @@ public class Usuario {
 	private Boolean statusUsuario = false;
 
 	@Column
-	private byte[] foto;
+	private Byte[] foto;
 
+		
 	public Long getId() {
 		return id;
 	}
@@ -81,11 +83,11 @@ public class Usuario {
 		this.statusUsuario = statusUsuario;
 	}
 
-	public byte[] getFoto() {
+	public Byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(Byte[] foto) {
 		this.foto = foto;
 	}
 
