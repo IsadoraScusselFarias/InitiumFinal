@@ -13,7 +13,6 @@ import br.com.db1.model.Avaliador;
 public class AvaliadorDao implements DAO<Avaliador> {
 
 	@Inject
-	
 	private EntityManager manager;
 
 	public List<Avaliador> findAll() {

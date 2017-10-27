@@ -3,14 +3,17 @@ package br.com.db1.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario", schema = "public")
-public class Usuario {
+public class Usuario  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +34,28 @@ public class Usuario {
 	@Column(nullable = false)
 	private Boolean statusUsuario = false;
 
-	@Column
-	private Byte[] foto;
+	@Column(nullable = true)
+	private byte[] foto;
+	
+	@Column(name = "nomeArquivo", nullable = true, length = 50)
+	private String nomeArquivo;
 
-		
+	@Column(name = "extensao", nullable = true, length = 10)
+	private String extensaoArquivo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tipoAvaliacao_id")
+	private TipoAvaliacao tipoAvaliacao;
+
+	public TipoAvaliacao getTipoAvaliacao() {
+		return tipoAvaliacao;
+	}
+
+	public void setTipoAvaliacao(TipoAvaliacao tipoAvaliacao) {
+		this.tipoAvaliacao = tipoAvaliacao;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -82,13 +103,29 @@ public class Usuario {
 	public void setStatusUsuario(Boolean statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
-
-	public Byte[] getFoto() {
+	
+	public byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Byte[] foto) {
-		this.foto = foto;
+	public void setFoto(byte[] arquivoByte) {
+		this.foto = arquivoByte;
+	}
+
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+
+	public String getExtensaoArquivo() {
+		return extensaoArquivo;
+	}
+
+	public void setExtensaoArquivo(String extensaoArquivo) {
+		this.extensaoArquivo = extensaoArquivo;
 	}
 
 }

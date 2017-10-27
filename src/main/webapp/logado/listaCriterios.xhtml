@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="barraSuperiorContainer">
+				<span><h:outputLabel value="Pesquisar:" /></span>
+				<span><h:inputText
+						id="nomeTipoAvaliacaoFiltrada" class="col-sm-8"
+						value="#{tipoAvaliacaoBean.nomeTipoAvaliacaoFiltrada}" />
+				</span>
+				<span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{tipoAvaliacaoBean.listarTipoAvaliacao}" />
+				</span>
+				<span><h:commandButton
+						value="Cadastrar" class=" btn btn-success" action="#{tipoAvaliacaoBean.novo}" />
+				</span>
+			</div>
+			<div class="alert-success">
+				<h:messages />
+			</div>
+			<div class="container">
+				<div class="row">
+					<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+					<h:selectOneMenu value="#{criterioBean.criterio.tipoAvaliacao}" id="campo-tipoAvaliacao"
+						requiredMessage="Tipo avaliacao obrigatorio" label="Tipo Avaliacao" required="true">
+						<f:selectItem itemValue="" itemLabel="Selecione um tipo de avaliacao" />
+
+
+
+						<f:selectItems value="#{criterioBean.listTipoAvaliacao}" var="tipoAvaliacao"
+							itemLabel="#{tipoAvaliacao.nome}" itemValue="#{tipoAvaliacao}"  />
+					</h:selectOneMenu>
+					<h:message for="campo-tipoAvaliacao" style="color:red" />
+				</div>
+				<div class="row">
+					<h:outputLabel value="criterio:" for="campo-criterio" />
+				<h:selectManyCheckbox value="#{tipoAvaliacaoBean.criterios}" id="campo-criterio"
+					 label="criterio:" required="true">
+
+					<f:selectItems value="#{tipoAvaliacaoBean.listaCriterio}" var="t"
+							itemLabel="#{t.descricao}" itemValue="#{t}"  />
+					</h:selectManyCheckbox>
+					<h:message for="campo-criterio" style="color:red" />
+				</div>
+
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
