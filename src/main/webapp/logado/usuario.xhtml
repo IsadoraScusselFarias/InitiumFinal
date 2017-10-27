@@ -6,16 +6,18 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
+		<div class="cabecalhoNovo">
+			<h3>Avaliação</h3>
+		</div>
 		<h:form>
 			<div class="barraSuperiorContainer">
-				<span><h:outputLabel value="Pesquisar: " /></span>
-				<span><h:inputText
+				<span><h:outputLabel value="Pesquisar: " /></span> <span><h:inputText
 						id="nomeUsuarioFiltrada"
-						value="#{usuarioBean.nomeUsuarioFiltrada}" class="col-sm-8"/></span>
-				<span><h:commandButton
-						class="btn btn-info" value="Filtrar" action="#{usuarioBean.listarUsuario}"  /></span>
-				<span><h:commandButton value="Cadastrar"
-						class=" btn btn-success" action="#{usuarioBean.novo}" /> </span>
+						value="#{usuarioBean.nomeUsuarioFiltrada}" class="col-sm-8" /></span> <span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{usuarioBean.listarUsuario}" /></span> <span><h:commandButton
+						value="Cadastrar" class=" btn btn-success"
+						action="#{usuarioBean.novo}" /> </span>
 			</div>
 			<div class="alert-success">
 				<h:messages />
@@ -31,6 +33,8 @@
 							<h:column>
 								<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
 							<h:column>
+								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
+							<h:column>
 								<f:facet name="header">Email</f:facet>#{item.email}</h:column>
 							<h:column>
 								<f:facet name="header">Administrador</f:facet>#{item.administrador}</h:column>
@@ -39,22 +43,22 @@
 							<h:column>
 								<f:facet name="header">Foto</f:facet>#{item.foto}</h:column>
 
-								<h:column class="centralizarTabela">
-									<div class="centralizarTabela">
-										<h:commandLink action="#{usuarioBean.editar(item)}">
-											<h:graphicImage library="imagem" name="editar.svg"
-												alt="Editar" title="Editar" />
-										</h:commandLink>
-									</div>
-								</h:column>
-								<h:column>
-									<div class="centralizarTabela">
-										<h:commandLink action="#{usuarioBean.remover(item)}">
-											<h:graphicImage library="imagem" name="lixo.svg"
-												alt="Remover" title="Remover" />
-										</h:commandLink>
-									</div>
-								</h:column>
+							<h:column class="centralizarTabela">
+								<div class="centralizarTabela">
+									<h:commandLink action="#{usuarioBean.editar(item)}">
+										<h:graphicImage library="imagem" name="editar.svg"
+											alt="Editar" title="Editar" />
+									</h:commandLink>
+								</div>
+							</h:column>
+							<h:column>
+								<div class="centralizarTabela">
+									<h:commandLink action="#{usuarioBean.remover(item)}">
+										<h:graphicImage library="imagem" name="lixo.svg" alt="Remover"
+											title="Remover" />
+									</h:commandLink>
+								</div>
+							</h:column>
 						</thead>
 					</h:dataTable>
 				</div>

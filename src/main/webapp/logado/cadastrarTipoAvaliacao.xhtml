@@ -3,35 +3,50 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>Cadastrar Tipo Avaliacao</title>
-	<h:outputStylesheet name="bootstrap.min.css" library="css"
-		type="text/css" />
-</h:head>
-<h:body>
-	<h:form>
-		<div class="container">
+<ui:composition template="base/template.xhtml">
 
-			<div class="row">
-				<h:outputLabel value="Nome:" for="campo-nome" />
-				<h:inputText value="#{tipoAvaliacaoBean.tipoAvaliacao.nome}" id="campo-nome"
-					required="true" label="Nome"
-					validatorMessage="Digite somente letras" maxlength="20" />
-				<h:message for="campo-nome" style="color:red" />
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="container">
+				<div class="linha">
+					<h3>Cadastro de Tipo Avaliação</h3>
+				</div>
+				<div class="formularioContainer">
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Nome:" for="campo-nome" />
+						</div>
+						<div class="col-10">
+							<h:inputText value="#{tipoAvaliacaoBean.tipoAvaliacao.nome}"
+								id="campo-nome" required="true" label="Nome"
+								validatorMessage="Digite somente letras" maxlength="20">
+								<f:validateRegex pattern="^.{1,20}" />
+								</h:inputText>
+							<h:message for="campo-nome" style="color:red" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="PrazoPadrao:" for="campo-prazoPadrao" />
+						</div>
+						<div class="col-10">
+							<h:inputText
+								value="#{tipoAvaliacaoBean.tipoAvaliacao.prazoPadrao}"
+								id="campo-prazoPadrao" required="true" label="Prazo Padrao"
+								validatorMessage="Digite somente numeros" maxlength="2">
+								<f:validateRegex pattern="^.{1,2}" />
+							</h:inputText>
+							<h:message for="campo-nome" style="color:red" />
+						</div>
+					</div>
+					<div class="row">
+						<h:commandButton value="Salvar"
+							action="#{tipoAvaliacaoBean.salvar}" />
+					</div>
+				</div>
 			</div>
-			<div class="row">
-				<h:outputLabel value="PrazoPadrao:" for="campo-prazoPadrao" />
-				<h:inputText value="#{tipoAvaliacaoBean.tipoAvaliacao.prazoPadrao}" id="campo-prazoPadrao"
-					required="true" label="Prazo Padrao"
-					validatorMessage="Digite somente numeros" maxlength="2" />
-				<h:message for="campo-nome" style="color:red" />
-			</div>
-			<div class="row">
-				<h:commandButton value="Salvar" action="#{tipoAvaliacaoBean.salvar}" />
-			</div>
-		</div>
-	</h:form>
-	<h:outputScript name="bootstrap.min.js" library="js" async="true"
-		type="application/javascript" />
-</h:body>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>
