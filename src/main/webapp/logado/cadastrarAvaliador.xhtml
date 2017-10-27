@@ -26,18 +26,23 @@
 					validatorMessage="Digite somente letras" maxlength="50" />
 				<h:message for="campo-email" style="color:red" />
 			</div>
-			<div class="row">
+		</div>
+		<div class="row">
+			<div class="col-2 col-form-label">
 				<h:outputLabel value="Senha:" for="campo-senha" />
-					<h:inputSecret id="campo-senha" required="true" label="Senha"
-						rendered="#{empty avaliadorBean.usuario.id}"
-						value="#{avaliadorBean.usuario.senha}" />
+			</div>
+			<div class="col-10">
+				<h:inputSecret id="campo-senha" required="true" label="Senha"
+					rendered="#{empty usuarioBean.usuario.id}"
+					value="#{avaliadorBean.senha}" />
 				<h:message for="campo-senha" style="color:red" />
 			</div>
-			
-			
-			<div class="row">
-				<h:commandButton value="Salvar" action="#{avaliadorBean.salvar}" />
-			</div>
+			<h:message for="campo-senha" style="color:red" />
+		</div>
+
+
+		<div class="row">
+			<h:commandButton value="Salvar" action="#{avaliadorBean.salvar}" />
 		</div>
 	</h:form>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
