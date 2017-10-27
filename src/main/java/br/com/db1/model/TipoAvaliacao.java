@@ -15,22 +15,32 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipoAvaliacao", schema = "public")
 public class TipoAvaliacao implements Serializable {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(length = 20, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 2, nullable = false)
 	private Integer prazoPadrao;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
 	private List<Criterio> criterio;
-	
-	
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
+	private List<Usuario> usuario;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="tipoAvaliacao")
+	private List<Prova> prova;
+
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
+	}
+
 	public List<Criterio> getCriterio() {
 		return criterio;
 	}
@@ -62,14 +72,25 @@ public class TipoAvaliacao implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+
+	public List<Prova> getProva() {
+		return prova;
+	}
+
+	public void setProva(List<Prova> prova) {
+		this.prova = prova;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((criterio == null) ? 0 : criterio.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((prazoPadrao == null) ? 0 : prazoPadrao.hashCode());
+		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
 		return result;
 	}
 
@@ -79,9 +100,14 @@ public class TipoAvaliacao implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof TipoAvaliacao))
 			return false;
 		TipoAvaliacao other = (TipoAvaliacao) obj;
+		if (criterio == null) {
+			if (other.criterio != null)
+				return false;
+		} else if (!criterio.equals(other.criterio))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -92,7 +118,19 @@ public class TipoAvaliacao implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (prazoPadrao == null) {
+			if (other.prazoPadrao != null)
+				return false;
+		} else if (!prazoPadrao.equals(other.prazoPadrao))
+			return false;
+		if (prova == null) {
+			if (other.prova != null)
+				return false;
+		} else if (!prova.equals(other.prova))
+			return false;
 		return true;
 	}
+
+
 
 }

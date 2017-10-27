@@ -5,90 +5,114 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import java.util.Collection;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.persistence.Id;
 import javax.inject.Named;
 
+import br.com.db1.dao.impl.CandidatoDao;
 import br.com.db1.dao.impl.ProvaDao;
+import br.com.db1.dao.impl.TipoAvaliacaoDao;
+import br.com.db1.model.Candidato;
 import br.com.db1.model.Prova;
-
+import br.com.db1.model.TipoAvaliacao;
 
 @ApplicationScoped
 @Named
 public class ProvaBean {
 	@Inject
 	private ProvaDao dao;
+
+	/* ************************************** */
+	@Inject
+	private TipoAvaliacaoDao tipoAvaliacaoDao;
+
+	private List<TipoAvaliacao> listTipoAvaliacao;
+
+	/* ************************************** */
 	
-//	/* ************************************** */
-//	@Inject
-//	private TipoAvaliacaoDao tipoAvaliacaoDao;
-//	conection
-//	
-//	private List<TipoAvaliacao> listTipoAvaliacao;
-//	
-//	/* ************************************** */
-	
-	
+	/* ************************************** */
+	@Inject
+	private CandidatoDao candidatoDao;
+
+
+	private List<Candidato> listCandidato;
+
+	/* ************************************** */
+
 	private List<Prova> list;
 	private String parecerProvaFiltrada;
 	private Prova prova;
-	
-	
-	
-	
+
 	public ProvaDao getDao() {
 		return dao;
 	}
+
 	public void setDao(ProvaDao dao) {
 		this.dao = dao;
 	}
+
 	public List<Prova> getList() {
 		return list;
 	}
+
 	public void setList(List<Prova> list) {
 		this.list = list;
 	}
+
 	public String getParecerProvaFiltrada() {
 		return parecerProvaFiltrada;
 	}
+
 	public void setParecerProvaFiltrada(String parecerProvaFiltrada) {
 		this.parecerProvaFiltrada = parecerProvaFiltrada;
 	}
+
 	public Prova getProva() {
 		return prova;
 	}
+
 	public void setProva(Prova prova) {
 		this.prova = prova;
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		zerarLista();
-//		zerarListaTipoAvaliacao();
-//		carregarTipoAvaliacao();
+		this.prova = new Prova();
+		zerarListaTipoAvaliacao();
+		carregarTipoAvaliacao();
+		zerarListaCandidato();
+		carregarCandidato();
+		
+	}
+
+	private void carregarTipoAvaliacao() {
+		setListTipoAvaliacao(getTipoAvaliacaoDao().findAll());
+	}
+
+	private void zerarListaTipoAvaliacao() {
+		setListTipoAvaliacao(new ArrayList<TipoAvaliacao>());
 	}
 	
-//	private void carregarTipoAvaliacao() {
-//		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
-//	}
-//
-//	private void zerarListaTipoAvaliacao() {
-//		listTipoAvaliacao = new ArrayList<TipoAvaliacao>();
-//	}
-	
+	private void carregarCandidato() {
+		setListCandidato(getCandidatoDao().findAll());
+	}
+
+	private void zerarListaCandidato() {
+		setListCandidato(new ArrayList<Candidato>());
+	}
+
 	private void zerarLista() {
 		list = new ArrayList<Prova>();
 	}
-	
+
 	public String novo() {
-		this.prova= new Prova();
+		this.prova = new Prova();
 		return "cadastrarProva";
 	}
-	
+
 	public String salvar() {
 		if (!dao.save(this.prova)) {
 			adicionarMensagem("Erro ao cadastrar a prova.", FacesMessage.SEVERITY_ERROR);
@@ -99,7 +123,7 @@ public class ProvaBean {
 		}
 		return "prova";
 	}
-	
+
 	public String editar(Prova prova) {
 		this.prova = dao.findById(prova.getId());
 		return "cadastrarProva";
@@ -117,7 +141,7 @@ public class ProvaBean {
 
 	public void listarProva() {
 		zerarLista();
-		if (!parecerProvaFiltrada.isEmpty()) {
+		if (parecerProvaFiltrada != null && !parecerProvaFiltrada.isEmpty()) {
 			list.addAll(dao.findByName(parecerProvaFiltrada));
 		} else {
 			list.addAll(dao.findAll());
@@ -132,4 +156,34 @@ public class ProvaBean {
 
 	}
 
+	public List<TipoAvaliacao> getListTipoAvaliacao() {
+		return listTipoAvaliacao;
+	}
+
+	public void setListTipoAvaliacao(List<TipoAvaliacao> listTipoAvaliacao) {
+		this.listTipoAvaliacao = listTipoAvaliacao;
+	}
+
+	public TipoAvaliacaoDao getTipoAvaliacaoDao() {
+		return tipoAvaliacaoDao;
+	}
+
+	public void setTipoAvaliacaoDao(TipoAvaliacaoDao tipoAvaliacaoDao) {
+		this.tipoAvaliacaoDao = tipoAvaliacaoDao;
+	}
+	public CandidatoDao getCandidatoDao() {
+		return candidatoDao;
+	}
+
+	public void setCandidatoDao(CandidatoDao candidatoDao) {
+		this.candidatoDao = candidatoDao;
+	}
+
+	public List<Candidato> getListCandidato() {
+		return listCandidato;
+	}
+
+	public void setListCandidato(List<Candidato> listCandidato) {
+		this.listCandidato = listCandidato;
+	}
 }

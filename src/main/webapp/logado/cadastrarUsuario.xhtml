@@ -1,52 +1,110 @@
-<html xmlns="http://www.w3.org /1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>Cadastrar Usuario</title>
-	<h:outputStylesheet name="bootstrap.min.css" library="css"
-		type="text/css" />
-</h:head>
-<h:body>
-	<h:form>
-		<div class="container">
+<ui:composition template="base/template.xhtml">
 
-			<div class="row">
-				<h:outputLabel value="Nome:" for="campo-nome" />
-				<h:inputText value="#{usuarioBean.usuario.nome}" id="campo-nome"
-					required="true" label="Nome"
-					validatorMessage="Digite somente letras" maxlength="50" />
-				<h:message for="campo-nome" style="color:red" />
+	<ui:define name="conteudo">
+		<h:form enctype="multipart/form-data" prependId="false">
+			<div class="container">
+				<div class="linha">
+					<h3>Cadastro de Usuário</h3>
+				</div>
+				<div class="formularioContainer">
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Nome:" for="campo-nome" />
+						</div>
+						<div class="col-10">
+							<h:inputText value="#{usuarioBean.usuario.nome}" id="campo-nome"
+								required="true" label="Nome"
+								validatorMessage="Digite somente letras" maxlength="50" />
+							<h:message for="campo-nome" style="color:red" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Email:" for="campo-email" />
+						</div>
+						<div class="col-10">
+							<h:inputText value="#{usuarioBean.usuario.email}"
+								id="campo-email" required="true" label="Email"
+								validatorMessage="Digite somente letras" maxlength="50" />
+							<h:message for="campo-email" style="color:red" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Senha:" for="campo-senha" />
+						</div>
+						<div class="col-10">
+							<h:inputSecret id="campo-senha" required="true" label="Senha"
+								rendered="#{empty usuarioBean.usuario.id}"
+								value="#{usuarioBean.senha}" />
+							<h:message for="campo-senha" style="color:red" />
+						</div>
+						<div class="row">
+							<div class="col-2 col-form-label">
+								<h:outputLabel value="Confirmar senha:" for="campo-senha2" />
+							</div>
+							<div class="col-10">
+								<h:inputSecret id="campo-senha2" required="true" label="Senha2"
+									rendered="#{empty usuarioBean.usuario.id}"
+									value="#{usuarioBean.confirmarSenha}" />
+								<h:message for="campo-senha" style="color:red" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Foto:" for="campo-foto" />
+						<h:inputFile id="campo-foto" required="true" label="Foto"
+							value="#{usuarioBean.arquivoUpado}"
+							requiredMessage="Arquivo não selecionado!!" />
+						<h:message for="campo-foto" style="color:red" />
+					</div>
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Administrador" for="campo-administrador" />
+						</div>
+						<div class="col-10">
+							<h:selectBooleanCheckbox
+								value="#{usuarioBean.usuario.administrador}"
+								id="campo-administrador" />
+						</div>
+					</div>
+
+					<div class="row">
+						<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+						<h:selectOneMenu value="#{usuarioBean.usuario.tipoAvaliacao}"
+							id="campo-tipoAvaliacao"
+							requiredMessage="Tipo avaliacao obrigatorio"
+							label="Tipo Avaliacao" required="false">
+							<f:selectItem itemValue=""
+								itemLabel="Selecione um tipo de avaliacao" />
+							<f:selectItems value="#{usuarioBean.listTipoAvaliacao}"
+								var="tipoAvaliacao" itemLabel="#{tipoAvaliacao.nome}"
+								itemValue="#{tipoAvaliacao}" />
+						</h:selectOneMenu>
+						<h:message for="campo-tipoAvaliacao" style="color:red" />
+					</div>
+					<div class="row">
+						<div class="col-2 col-form-label">
+							<h:outputLabel value="Usuario Inativo" for="campo-status" />
+						</div>
+						<div class="col-10">
+							<h:selectBooleanCheckbox
+								value="#{usuarioBean.usuario.statusUsuario}" id="campo-status" />
+						</div>
+					</div>
+					<div class="row">
+						<h:commandButton value="Salvar" class="btn"
+							action="#{usuarioBean.salvar}" />
+					</div>
+				</div>
 			</div>
-			<div class="row">
-				<h:outputLabel value="Email:" for="campo-email" />
-				<h:inputText value="#{usuarioBean.usuario.email}" id="campo-email"
-					required="true" label="Email"
-					validatorMessage="Digite somente letras" maxlength="50" />
-				<h:message for="campo-email" style="color:red" />
-			</div>
-			<div class="row">
-				<h:outputLabel value="Senha:" for="campo-senha" />
-					<h:inputSecret id="campo-senha" required="true" label="Senha"
-						rendered="#{empty usuarioBean.usuario.id}"
-						value="#{usuarioBean.senha}" />
-				<h:message for="campo-senha" style="color:red" />
-			</div>
-			<div class="row">
-			<h:outputLabel value="Administrador" for="campo-administrador" />
-			<h:selectBooleanCheckbox value="#{usuarioBean.usuario.administrador}" id="campo-administrador"/>
-			</div>
-			<div class="row">
-			<h:outputLabel value="Usuario Inativo" for="campo-status" />
-			<h:selectBooleanCheckbox value="#{usuarioBean.usuario.statusUsuario}" id="campo-status"/>
-			</div>
-			<div class="row">
-				<h:commandButton value="Salvar" action="#{usuarioBean.salvar}" />
-			</div>
-		</div>
-	</h:form>
-	<h:outputScript name="bootstrap.min.js" library="js" async="true"
-		type="application/javascript" />
-</h:body>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>
