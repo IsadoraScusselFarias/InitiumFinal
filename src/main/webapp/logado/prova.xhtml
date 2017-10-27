@@ -33,7 +33,10 @@
 							<!-- Visualizar -->
 							<h:column>
 								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
-
+							<h:column>
+								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
+							<h:column>
+								<f:facet name="header">Candidato</f:facet>#{item.candidato.nome}</h:column>
 
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">

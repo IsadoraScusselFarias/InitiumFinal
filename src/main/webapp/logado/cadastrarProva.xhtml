@@ -31,7 +31,35 @@
 							</h:inputText>
 						</div>
 					</div>
-				
+					
+					
+			
+			<div class="row">
+				<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
+				<h:selectOneMenu value="#{provaBean.prova.tipoAvaliacao}" id="campo-tipoAvaliacao"
+					requiredMessage="Tipo avaliacao obrigatorio" label="Tipo Avaliacao" required="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um tipo de avaliacao" />
+
+				<h:message for="campo-tipoAvaliacao" style="color:red" />
+					<f:selectItems value="#{provaBean.listTipoAvaliacao}" var="tipoAvaliacao"
+						itemLabel="#{tipoAvaliacao.nome}" itemValue="#{tipoAvaliacao}"  />
+				</h:selectOneMenu>
+				<h:message for="campo-tipoAvaliacao" style="color:red" />
+			</div>
+			
+			<div class="row">
+				<h:outputLabel value="Candidato:" for="campo-candidato" />
+				<h:selectOneMenu value="#{provaBean.prova.candidato}" id="campo-candidato"
+					requiredMessage="Candidato obrigatorio" label="Candidato" required="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um Candidato" />
+
+				<h:message for="campo-candidato" style="color:red" />
+					<f:selectItems value="#{provaBean.listCandidato}" var="candidato"
+						itemLabel="#{candidato.nome}" itemValue="#{candidato}"  />
+				</h:selectOneMenu>
+				<h:message for="campo-candidato" style="color:red" />
+			</div>
+			
 					<div class="row">
 						<div>
 							<h:commandButton value="Salvar" action="#{provaBean.salvar}"
