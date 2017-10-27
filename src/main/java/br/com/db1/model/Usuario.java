@@ -1,10 +1,14 @@
 package br.com.db1.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,8 +35,21 @@ public class Usuario {
 	private Boolean statusUsuario = false;
 
 	@Column
-	private byte[] foto;
+	private Byte[] foto;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tipoAvaliacao_id")
+	private TipoAvaliacao tipoAvaliacao;
 
+	public TipoAvaliacao getTipoAvaliacao() {
+		return tipoAvaliacao;
+	}
+
+	public void setTipoAvaliacao(TipoAvaliacao tipoAvaliacao) {
+		this.tipoAvaliacao = tipoAvaliacao;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -81,11 +98,11 @@ public class Usuario {
 		this.statusUsuario = statusUsuario;
 	}
 
-	public byte[] getFoto() {
+	public Byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(Byte[] foto) {
 		this.foto = foto;
 	}
 
