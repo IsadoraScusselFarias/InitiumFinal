@@ -23,52 +23,53 @@ public class CriterioBean {
 
 	@Inject
 	private CriterioDao dao;
-	
+
 	/* ************************************** */
 	@Inject
 	private TipoAvaliacaoDao tipoAvaliacaoDao;
-	
-	
+
+
 	private List<TipoAvaliacao> listTipoAvaliacao;
-	
+
 	/* ************************************** */
-	
+
 	private List<Criterio> list;
 	private String descricaoCriterioFiltrado;
 	private Criterio criterio;
-	
-	
-	
+
+
+
 	public CriterioDao getDao() {
 		return dao;
 	}
 	public void setDao(CriterioDao dao) {
 		this.dao = dao;
 	}
-	
-	
+
+
 	public TipoAvaliacaoDao getTipoAvaliacaoDao() {
 		return tipoAvaliacaoDao;
 	}
 	public void setTipoAvaliacaoDao(TipoAvaliacaoDao tipoAvaliacaoDao) {
 		this.tipoAvaliacaoDao = tipoAvaliacaoDao;
 	}
-	
+
 	public List<TipoAvaliacao> getListTipoAvaliacao() {
 		return listTipoAvaliacao;
 	}
 	public void setListTipoAvaliacao(List<TipoAvaliacao> listTipoAvaliacao) {
 		this.listTipoAvaliacao = listTipoAvaliacao;
 	}
-	
-	
+
+
 	@PostConstruct
 	public void init() {
 		zerarLista();
 		zerarListaTipoAvaliacao();
 		carregarTipoAvaliacao();
+		criterio = new Criterio();
 	}
-	
+
 	private void carregarTipoAvaliacao() {
 		listTipoAvaliacao = tipoAvaliacaoDao.findAll();
 	}
@@ -76,7 +77,7 @@ public class CriterioBean {
 	private void zerarListaTipoAvaliacao() {
 		listTipoAvaliacao = new ArrayList<TipoAvaliacao>();
 	}
-	
+
 	/* ***************************************** */
 	public List<Criterio> getList() {
 		return list;
@@ -106,7 +107,7 @@ public class CriterioBean {
 	private void zerarLista() {
 		list = new ArrayList<Criterio>();
 	}
-	
+
 	public String novo() {
 		this.criterio= new Criterio();
 		return "cadastrarCriterio";

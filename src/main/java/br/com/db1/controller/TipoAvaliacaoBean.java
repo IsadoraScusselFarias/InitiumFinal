@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import br.com.db1.dao.impl.TipoAvaliacaoDao;
+import br.com.db1.model.Criterio;
 import br.com.db1.model.TipoAvaliacao;
 
 @ApplicationScoped
@@ -28,18 +29,37 @@ public class TipoAvaliacaoBean {
 
 	private TipoAvaliacao tipoAvaliacao;
 
+	private Criterio criterios;
+
+
+
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		tipoAvaliacao = new TipoAvaliacao();
 	}
 
 	private void zerarLista() {
 		list = new ArrayList<TipoAvaliacao>();
 	}
 
+	public List<Criterio> getListaCriterio() {
+		return tipoAvaliacao.getCriterio();
+	}
+
+
 	public String getNomeTipoAvaliacaoFiltrada() {
 		return nomeTipoAvaliacaoFiltrada;
 	}
+
+	public Criterio getCriterios() {
+		return criterios;
+	}
+
+	public void setCriterios(Criterio criterios) {
+		this.criterios = criterios;
+	}
+
 
 	public void setNomeTipoAvaliacaoFiltrada(String nomeTipoAvaliacaoFiltrada) {
 		this.nomeTipoAvaliacaoFiltrada = nomeTipoAvaliacaoFiltrada;

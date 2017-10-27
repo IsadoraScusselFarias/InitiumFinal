@@ -15,20 +15,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipoAvaliacao", schema = "public")
 public class TipoAvaliacao implements Serializable {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(length = 20, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 2, nullable = false)
 	private Integer prazoPadrao;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
 	private List<Criterio> criterio;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
 	private List<Usuario> usuario;
 
@@ -39,7 +38,7 @@ public class TipoAvaliacao implements Serializable {
 	public void setUsuario(List<Usuario> usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public List<Criterio> getCriterio() {
 		return criterio;
 	}
