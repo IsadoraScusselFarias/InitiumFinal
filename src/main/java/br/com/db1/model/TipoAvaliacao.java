@@ -30,6 +30,7 @@ public class TipoAvaliacao implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
 	private List<Usuario> usuario;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="tipoAvaliacao")
 	private List<Prova> prova;
 
