@@ -14,9 +14,11 @@ import javax.inject.Named;
 import br.com.db1.dao.impl.CandidatoDao;
 import br.com.db1.dao.impl.ProvaDao;
 import br.com.db1.dao.impl.TipoAvaliacaoDao;
+import br.com.db1.dao.impl.UsuarioDao;
 import br.com.db1.model.Candidato;
 import br.com.db1.model.Prova;
 import br.com.db1.model.TipoAvaliacao;
+import br.com.db1.model.Usuario;
 
 @ApplicationScoped
 @Named
@@ -40,6 +42,16 @@ public class ProvaBean {
 	private List<Candidato> listCandidato;
 
 	/* ************************************** */
+	
+	/* ************************************** */
+	@Inject
+	private UsuarioDao usuarioDao;
+
+
+	private List<Usuario> listUsuario;
+
+	/* ************************************** */
+
 
 	private List<Prova> list;
 	private String parecerProvaFiltrada;
@@ -85,7 +97,8 @@ public class ProvaBean {
 		carregarTipoAvaliacao();
 		zerarListaCandidato();
 		carregarCandidato();
-		
+		zerarListaUsuario();
+		carregarUsuario();
 	}
 
 	private void carregarTipoAvaliacao() {
@@ -102,6 +115,14 @@ public class ProvaBean {
 
 	private void zerarListaCandidato() {
 		setListCandidato(new ArrayList<Candidato>());
+	}
+	
+	private void carregarUsuario() {
+		setListUsuario(getUsuarioDao().findAll());
+	}
+
+	private void zerarListaUsuario() {
+		setListUsuario(new ArrayList<Usuario>());
 	}
 
 	private void zerarLista() {
@@ -186,4 +207,21 @@ public class ProvaBean {
 	public void setListCandidato(List<Candidato> listCandidato) {
 		this.listCandidato = listCandidato;
 	}
+
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	public List<Usuario> getListUsuario() {
+		return listUsuario;
+	}
+
+	public void setListUsuario(List<Usuario> listUsuario) {
+		this.listUsuario = listUsuario;
+	}
+	
 }

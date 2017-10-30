@@ -2,7 +2,6 @@ package br.com.db1.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,12 +47,24 @@ public class Prova {
 //	@JoinColumn(name = "avaliacao_id", nullable = false)
 //	private Avaliacao avaliacao;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tipoAvaliacao_id", nullable = false)
+	@JoinColumn(name = "tipoAvaliacao_id", nullable = true)
 	private TipoAvaliacao tipoAvaliacao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tbcandidato_id", nullable = false)
+	@JoinColumn(name = "tbcandidato_id", nullable = true)
 	private Candidato candidato;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_id", nullable = true)
+	private Usuario usuario;
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Candidato getCandidato() {
 		return candidato;
@@ -148,6 +159,7 @@ public class Prova {
 		result = prime * result + ((pontosFracos == null) ? 0 : pontosFracos.hashCode());
 		result = prime * result + ((prazo == null) ? 0 : prazo.hashCode());
 		result = prime * result + ((tipoAvaliacao == null) ? 0 : tipoAvaliacao.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -210,8 +222,15 @@ public class Prova {
 				return false;
 		} else if (!tipoAvaliacao.equals(other.tipoAvaliacao))
 			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
+			return false;
 		return true;
 	}
+
+	
 
 	
 	
