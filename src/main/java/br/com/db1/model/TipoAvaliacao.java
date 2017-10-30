@@ -25,11 +25,12 @@ public class TipoAvaliacao implements Serializable {
 	@Column(length = 2, nullable = false)
 	private Integer prazoPadrao;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tipoAvaliacao")
 	private List<Criterio> criterio;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoAvaliacao")
 	private List<Usuario> usuario;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="tipoAvaliacao")
 	private List<Prova> prova;
 
