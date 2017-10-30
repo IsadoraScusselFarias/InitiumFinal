@@ -105,8 +105,21 @@ public class UsuarioBean {
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		zerarListaTipoAvaliacao();
 		carregarTipoAvaliacao();
 		usuario = new Usuario();
+	}
+
+	public UsuarioDao getDao() {
+		return dao;
+	}
+
+	public void setDao(UsuarioDao dao) {
+		this.dao = dao;
+	}
+
+	public void setList(List<Usuario> list) {
+		this.list = list;
 	}
 
 	public String getNomeArquivo() {
@@ -136,6 +149,10 @@ public class UsuarioBean {
 
 	private void zerarLista() {
 		list = new ArrayList<Usuario>();
+	}
+	
+	private void zerarListaTipoAvaliacao() {
+		listTipoAvaliacao = new ArrayList<TipoAvaliacao>();
 	}
 
 	public String getNomeUsuarioFiltrada() {
