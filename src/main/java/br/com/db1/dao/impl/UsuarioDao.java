@@ -16,7 +16,7 @@ public class UsuarioDao implements DAO<Usuario> {
 	private EntityManager manager;
 
 	public List<Usuario> findAll() {
-		return manager.createQuery("Select u from Usuario u").getResultList();
+		return manager.createQuery("Select u from Usuario u where u.administrador is true").getResultList();
 	}
 
 	public Usuario findById(Long id) {
@@ -26,7 +26,7 @@ public class UsuarioDao implements DAO<Usuario> {
 	}
 
 	public List<Usuario> findByName(String nome) {
-		Query query = manager.createQuery("Select u from Usuario u where u.nome like :pNome");
+		Query query = manager.createQuery("Select u from Usuario u where (u.nome like :pNome) and (u.administrador is true)");
 		query.setParameter("pNome", "%"+nome+"%");
 		return query.getResultList();
 	}
