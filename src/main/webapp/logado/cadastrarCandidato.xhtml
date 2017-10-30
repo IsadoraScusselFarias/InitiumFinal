@@ -22,7 +22,7 @@
 							<h:inputText value="#{candidatoBean.candidato.nome}"
 								id="campo-candidato" required="true" label="Nome:"
 								validatorMessage="Digite um nome válido! (somente letras, máx 100 caracteres)" maxlength="100" minlength="1">
-								<f:validateRegex pattern="^[a-zA-Z]+$" />
+								<f:validateRegex pattern="^[a-zA-ZÀ-ÿ]*$" />
 							</h:inputText>
 							<span><h:message for="campo-candidato" class="alert-danger erro" /></span>
 						</div>
@@ -45,10 +45,12 @@
 						</div>
 						<div class="col-10">
 							<h:inputText value="#{candidatoBean.candidato.telefone}"
-								id="campo-telefone" validatorMessage="Digite um telefone válido! (somente números! Exemplo: (11)12345-6789)" required="true" label="Telefone:" minlength="10" >
-								<f:validateRegex pattern="[0-9+]+" />
+								id="campo-telefone"
+								validatorMessage="Digite um telefone válido! (somente números! Exemplo: 4412345-6789)"
+								required="true" label="Telefone:" minlength="8">
 							</h:inputText>
-							<span><h:message for="campo-telefone" class="alert-danger erro" /></span>
+							<span><h:message for="campo-telefone"
+									class="alert-danger erro" /></span>
 						</div>
 
 					</div>

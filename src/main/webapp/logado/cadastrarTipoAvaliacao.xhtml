@@ -34,7 +34,7 @@
 								value="#{tipoAvaliacaoBean.tipoAvaliacao.prazoPadrao}"
 								id="campo-prazoPadrao" required="true" label="Prazo Padrao"
 								validatorMessage="Digite somente numeros" maxlength="2">
-								<f:validateRegex pattern="^.{1,2}" />
+								<!-- <f:validateRegex pattern="\d*(.\d+)?" />  -->
 							</h:inputText>
 							<h:message for="campo-nome" style="color:red" />
 						</div>
