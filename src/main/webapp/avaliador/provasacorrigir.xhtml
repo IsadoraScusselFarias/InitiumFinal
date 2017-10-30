@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+<!--
+É preciso atualizar todos os values
+-->
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="barraSuperiorContainer">
+				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
+						id="parecerProvaFiltrada" class="col-sm-8"
+						value="#{provaBean.parecerProvaFiltrada}" /></span> <span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{provaBean.listarProva}" /></span>
+			</div>
+			<div class="alert-success">
+					<h:messages />
+				</div>
+			<div class="container">
+				<div class="row">
+					<h:dataTable value="#{provaBean.listProva}" var="item"
+						rendered="#{not empty provaBean.listProva}"
+						class="table table-hover table-bordered thead-inverse">
+						<thead>
+						<h:column >
+							<f:facet name="header" >ID prova</f:facet>#{item.id}</h:column>
+						<h:column>
+							<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao}</h:column>
+						<h:column>
+							<f:facet name="header" >Prazo para correcao</f:facet>#{item.prazoPadrao}</h:column>
+
+						<h:column>
+							<div class="centralizarTabela">
+								<h:commandLink action="#{provaBean.remover(item)}">
+									<h:graphicImage library="imagem" name="edit.svg" alt="Corrigir"
+										title="Corrigir" />
+								</h:commandLink>
+							</div>
+						</h:column>
+					</thead>
+					</h:dataTable>
+				</div>
+
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

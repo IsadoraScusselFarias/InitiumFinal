@@ -36,6 +36,14 @@ public class ProvaBean {
 	
 	/* ************************************** */
 	@Inject
+	private ProvaDao provaDao;
+
+	private List<Prova> listProva;
+
+	/* ************************************** */
+	
+	/* ************************************** */
+	@Inject
 	private CandidatoDao candidatoDao;
 
 
@@ -99,6 +107,28 @@ public class ProvaBean {
 		carregarCandidato();
 		zerarListaUsuario();
 		carregarUsuario();
+		zerarListaTipoAvaliacao();
+		carregarTipoAvaliacao();
+
+	}
+	
+	
+
+	
+	public ProvaDao getProvaDao() {
+		return provaDao;
+	}
+
+	public void setProvaDao(ProvaDao provaDao) {
+		this.provaDao = provaDao;
+	}
+
+	public List<Prova> getListProva() {
+		return listProva;
+	}
+
+	public void setListProva(List<Prova> listProva) {
+		this.listProva = listProva;
 	}
 
 	private void carregarTipoAvaliacao() {
@@ -107,6 +137,14 @@ public class ProvaBean {
 
 	private void zerarListaTipoAvaliacao() {
 		setListTipoAvaliacao(new ArrayList<TipoAvaliacao>());
+	}
+	
+	private void carregarProva() {
+		setListProva(getProvaDao().findAll());
+	}
+
+	private void zerarProva() {
+		setListProva(new ArrayList<Prova>());
 	}
 	
 	private void carregarCandidato() {
