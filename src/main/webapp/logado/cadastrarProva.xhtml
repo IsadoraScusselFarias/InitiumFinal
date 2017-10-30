@@ -60,6 +60,19 @@
 				<h:message for="campo-candidato" style="color:red" />
 			</div>
 			
+			<div class="row">
+				<h:outputLabel value="Avaliador" for="campo-usuario" />
+				<h:selectOneMenu value="#{provaBean.prova.usuario}" id="campo-usuario"
+					requiredMessage="Avaliador obrigatorio" label="Avaliador" required="true">
+					<f:selectItem itemValue="" itemLabel="Selecione um Avaliador" />
+
+				<h:message for="campo-usuario" style="color:red" />
+					<f:selectItems value="#{provaBean.listUsuario}" var="usuario"
+						itemLabel="#{usuario.nome}" itemValue="#{usuario}"  />
+				</h:selectOneMenu>
+				<h:message for="campo-usuario" style="color:red" />
+			</div>
+			
 					<div class="row">
 						<div>
 							<h:commandButton value="Salvar" action="#{provaBean.salvar}"
