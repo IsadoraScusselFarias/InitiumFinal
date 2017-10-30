@@ -48,6 +48,9 @@ public class TipoAvaliacaoBean {
 	}
 
 
+	public void listaCriterio2() {
+		 tipoAvaliacao.getCriterio();
+	}
 	public String getNomeTipoAvaliacaoFiltrada() {
 		return nomeTipoAvaliacaoFiltrada;
 	}
@@ -96,6 +99,10 @@ public class TipoAvaliacaoBean {
 	public String editar(TipoAvaliacao tipoAvaliacao) {
 		this.tipoAvaliacao = dao.findById(tipoAvaliacao.getId());
 		return "cadastrarTipoAvaliacao";
+	}
+	public String detalhar(TipoAvaliacao tipoAvaliacao) {
+		tipoAvaliacao.getCriterio();
+		return "detalharTipoAvaliacao";
 	}
 
 	public String remover(TipoAvaliacao tipoAvaliacao) {
