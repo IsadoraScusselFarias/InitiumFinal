@@ -26,26 +26,14 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<h:outputLabel value="Tipo Avaliacao:" for="campo-tipoAvaliacao" />
-					<h:selectOneMenu value="#{tipoAvaliacaoBean.tipoAvaliacao}" id="campo-tipoAvaliacao"
-						requiredMessage="Tipo avaliacao obrigatorio" label="Tipo Avaliacao" required="true">
-						<f:selectItem itemValue="" itemLabel="Selecione um tipo de avaliacao" />
-
-
-
-						<f:selectItems value="#{criterioBean.listTipoAvaliacao}" var="tipoAvaliacao"
-							itemLabel="#{tipoAvaliacao.nome}" itemValue="#{tipoAvaliacao}"  />
-						<f:ajax listener="#{tipoAvaliacaoBean.listaCriterio2}"  event="change" render="campo-criterio" />
-					</h:selectOneMenu>
-					<h:message for="campo-tipoAvaliacao" style="color:red" />
+					<h:outputLabel value="#{tipoAvaliacaoBean.tipoAvaliacao.nome}"  />
 				</div>
 				<div class="row">
 					<h:outputLabel value="criterio:" for="campo-criterio" />
 				<h:selectManyCheckbox value="#{tipoAvaliacaoBean.criterios}" id="campo-criterio"
 					 label="criterio:" required="true">
-
 					<f:selectItems value="#{tipoAvaliacaoBean.listaCriterio}" var="t"
-							itemLabel="#{t.descricao}" itemValue="#{t}"  />
+							itemLabel="#{t.descricao}" itemValue="#{t}"  rendered="#{not empty tipoAvaliacaoBean.listaCriterio}"/>
 					</h:selectManyCheckbox>
 					<h:message for="campo-criterio" style="color:red" />
 				</div>
