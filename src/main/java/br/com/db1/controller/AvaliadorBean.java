@@ -1,5 +1,6 @@
 package br.com.db1.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.IOUtils;
 
 import br.com.db1.dao.Transactional;
 import br.com.db1.dao.impl.TipoAvaliacaoDao;
@@ -40,6 +44,27 @@ public class AvaliadorBean  {
 	private Usuario usuario;
 	
 	private String senha;
+	
+	private String confirmarSenha;
+	
+	private Part arquivoUpado;
+	
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+	
+	
+	public Part getArquivoUpado() {
+		return arquivoUpado;
+	}
+
+	public void setArquivoUpado(Part arquivoUpado) {
+		this.arquivoUpado = arquivoUpado;
+	}
+	
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
 	
 	public String getSenha() {
 		return senha;
@@ -103,29 +128,58 @@ public class AvaliadorBean  {
 
 	public String novo() {
 		this.usuario = new Usuario();
-		return "cadastrarUsuario";
+		return "cadastrarAvaliador";
+	}
+	
+	public String getNomeArquivo() {
+		String header = arquivoUpado.getHeader("content-disposition");
+		if (header == null)
+			return "";
+		for (String headerPart : header.split(";")) {
+			if (headerPart.trim().startsWith("filename")) {
+				return headerPart.substring(headerPart.indexOf('=') + 1).trim().replace("\"", "");
+			}
+		}
+		return "";
+	}
+	
+	public void importa() {
+		try {
+			this.usuario.setNomeArquivo(getNomeArquivo());
+			this.usuario.setExtensaoArquivo(arquivoUpado.getContentType());
+
+			byte[] arquivoByte = IOUtils.toByteArray(arquivoUpado.getInputStream());
+			this.usuario.setFoto(arquivoByte);
+
+		} catch (IOException e) {
+			adicionarMensagem("Erro ao enviar o arquivo " + e.getMessage(), FacesMessage.SEVERITY_ERROR);
+		}
 	}
 	@Transactional
 	public String salvar() {
-		if (this.usuario.getId() == null) {
-			this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
-	}
-		if (!dao.save(this.usuario)) {
-			adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
+
+		importa();
+		if (senha.equals(confirmarSenha)) {
+			if (this.usuario.getId() == null) {
+				this.usuario.setSenha(criptografia.criptografar(senha, "MD5"));
+			}
+			if (!dao.save(this.usuario)) {
+				adicionarMensagem("Erro ao cadastrar a Usuario.", FacesMessage.SEVERITY_ERROR);
+			} else {
+				adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
+				nomeUsuarioFiltrada = this.usuario.getNome();
+				listarUsuario();
+			}
 		} else {
-			adicionarMensagem("Usuario salva com sucesso.", FacesMessage.SEVERITY_INFO);
-			this.usuario=new Usuario();
-			nomeUsuarioFiltrada = ""; 
-			nomeUsuarioFiltrada = this.usuario.getNome(); 
-			listarUsuario();
+			adicionarMensagem("As senhas não são iguais.", FacesMessage.SEVERITY_INFO);
 		}
-		return "usuario";
+		return "avaliador";
 	}
 
 	
 	public String editar(Usuario usuario) {
 		this.usuario = dao.findById(usuario.getId());
-		return "cadastrarUsuario";
+		return "cadastrarAvaliador";
 	}
 
 	public String remover(Usuario usuario) {
@@ -135,15 +189,15 @@ public class AvaliadorBean  {
 			adicionarMensagem("Usuario removida com sucesso.", FacesMessage.SEVERITY_INFO);
 			listarUsuario();
 		}
-		return "usuario";
+		return "avaliador";
 	}
 
 	public void listarUsuario() {
 		zerarLista();
 		if (!nomeUsuarioFiltrada.isEmpty()) {
-			list.addAll(dao.findByName(nomeUsuarioFiltrada));
+			list.addAll(dao.findByNameAvaliador(nomeUsuarioFiltrada));
 		} else {
-			list.addAll(dao.findAll());
+			list.addAll(dao.findAvaliador());
 		}
 	}
 
