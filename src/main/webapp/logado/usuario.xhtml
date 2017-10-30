@@ -6,6 +6,9 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
+		<div class="cabecalhoNovo">
+			<h3>Administradores</h3>
+		</div>
 		<h:form>
 			<div class="barraSuperiorContainer">
 				<span><h:outputLabel value="Pesquisar: " /></span> <span><h:inputText
@@ -30,13 +33,11 @@
 							<h:column>
 								<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
 							<h:column>
-								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
-							<h:column>
 								<f:facet name="header">Email</f:facet>#{item.email}</h:column>
 							<h:column>
 								<f:facet name="header">Administrador</f:facet>#{item.administrador}</h:column>
 							<h:column>
-								<f:facet name="header">Usuários Ativos</f:facet>#{item.statusUsuario}</h:column>
+								<f:facet name="header">Usuário Inativo</f:facet>#{item.statusUsuario}</h:column>
 							<h:column>
 								<f:facet name="header">Foto</f:facet>#{item.foto}</h:column>
 

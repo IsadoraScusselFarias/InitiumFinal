@@ -7,6 +7,7 @@
 
 	<ui:define name="conteudo">
 		<h1>PROVAS</h1>
+		
 		<h:form>
 			<div class="barraSuperiorContainer">
 				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
@@ -30,14 +31,16 @@
 								<f:facet name="header"> ID</f:facet>#{item.id}</h:column>
 							<h:column>
 								<f:facet name="header">Prazo</f:facet>#{item.prazo}</h:column>
-							<!-- Visualizar -->
-							<h:column>
-								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
-							<h:column>
+								<h:column>
 								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
 							<h:column>
 								<f:facet name="header">Candidato</f:facet>#{item.candidato.nome}</h:column>
-
+							<h:column>
+								<f:facet name="header">Avaliador</f:facet>#{item.usuario.nome}</h:column>
+							<!-- Visualizar -->
+							<h:column>
+								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
+							
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
 									<h:commandLink action="#{provaBean.editar(item)}">
