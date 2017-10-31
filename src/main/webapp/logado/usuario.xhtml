@@ -34,15 +34,16 @@
 								<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
 							<h:column>
 								<f:facet name="header">Email</f:facet>#{item.email}</h:column>
-							<h:column>
-								<f:facet name="header">Administrador</f:facet>#{item.administrador}</h:column>
-							<h:column>
-								<f:facet name="header">Usuário Inativo</f:facet>#{item.statusUsuario}</h:column>
-							<h:column>
-								<f:facet name="header">Foto</f:facet>#{item.foto}</h:column>
+							<h:column >
+								<div class="centralizarTabela">
+								<f:facet name="header">Usuário Ativo</f:facet><h:graphicImage rendered="#{!item.statusUsuario}" library="imagem"
+									name="check.png" />
+								</div>
+							</h:column>
 
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
+								<f:facet name="header">Editar</f:facet>
 									<h:commandLink action="#{usuarioBean.editar(item)}">
 										<h:graphicImage library="imagem" name="editar.svg"
 											alt="Editar" title="Editar" />
@@ -51,6 +52,7 @@
 							</h:column>
 							<h:column>
 								<div class="centralizarTabela">
+								<f:facet name="header">Inativar</f:facet>
 									<h:commandLink action="#{usuarioBean.remover(item)}">
 										<h:graphicImage library="imagem" name="lixo.svg" alt="Remover"
 											title="Remover" />
