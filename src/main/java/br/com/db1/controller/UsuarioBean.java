@@ -108,6 +108,7 @@ public class UsuarioBean {
 		zerarListaTipoAvaliacao();
 		carregarTipoAvaliacao();
 		usuario = new Usuario();
+	
 	}
 
 	public UsuarioDao getDao() {
@@ -181,7 +182,7 @@ public class UsuarioBean {
 	}
 
 	public String salvar() {
-
+			this.usuario.setAdministrador(true);
 		importa();
 		if (senha.equals(confirmarSenha)) {
 			if (this.usuario.getId() == null) {
