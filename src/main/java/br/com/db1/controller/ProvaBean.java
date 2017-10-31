@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 import br.com.db1.dao.impl.CandidatoDao;
 import br.com.db1.dao.impl.ProvaDao;
@@ -64,7 +65,9 @@ public class ProvaBean {
 	private List<Prova> list;
 	private String parecerProvaFiltrada;
 	private Prova prova;
-
+	private Part arquivoUpado;
+	private String nomeArquivoFiltrado;
+	
 	public ProvaDao getDao() {
 		return dao;
 	}
@@ -272,5 +275,19 @@ public class ProvaBean {
 	public void setListUsuario(List<Usuario> listUsuario) {
 		this.listUsuario = listUsuario;
 	}
-	
+	public String getNomeArquivoFiltrado() {
+		return nomeArquivoFiltrado;
+	}
+
+	public void setNomeArquivoFiltrado(String nomeArquivoFiltrado) {
+		this.nomeArquivoFiltrado = nomeArquivoFiltrado;
+	}
+
+	public Part getArquivoUpado() {
+		return arquivoUpado;
+	}
+
+	public void setArquivoUpado(Part arquivoUpado) {
+		this.arquivoUpado = arquivoUpado;
+	}
 }
