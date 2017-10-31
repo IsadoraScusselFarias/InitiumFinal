@@ -7,9 +7,11 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.db1.dao.impl.CandidatoDao;
@@ -32,6 +34,14 @@ public class ProvaBean {
 	private TipoAvaliacaoDao tipoAvaliacaoDao;
 
 	private List<TipoAvaliacao> listTipoAvaliacao;
+
+	/* ************************************** */
+	
+	/* ************************************** */
+	@Inject
+	private ProvaDao provaDao;
+
+	private List<Prova> listProva;
 
 	/* ************************************** */
 	
@@ -102,6 +112,28 @@ public class ProvaBean {
 		carregarCandidato();
 		zerarListaUsuario();
 		carregarUsuario();
+		zerarListaTipoAvaliacao();
+		carregarTipoAvaliacao();
+
+	}
+	
+	
+
+	
+	public ProvaDao getProvaDao() {
+		return provaDao;
+	}
+
+	public void setProvaDao(ProvaDao provaDao) {
+		this.provaDao = provaDao;
+	}
+
+	public List<Prova> getListProva() {
+		return listProva;
+	}
+
+	public void setListProva(List<Prova> listProva) {
+		this.listProva = listProva;
 	}
 
 	private void carregarTipoAvaliacao() {
@@ -110,6 +142,14 @@ public class ProvaBean {
 
 	private void zerarListaTipoAvaliacao() {
 		setListTipoAvaliacao(new ArrayList<TipoAvaliacao>());
+	}
+	
+	private void carregarProva() {
+		setListProva(getProvaDao().findAll());
+	}
+
+	private void zerarProva() {
+		setListProva(new ArrayList<Prova>());
 	}
 	
 	private void carregarCandidato() {
@@ -171,6 +211,21 @@ public class ProvaBean {
 			list.addAll(dao.findAll());
 		}
 	}
+	
+	/* ********************************************************** */
+	public void listarProvaAvaliador() {
+		zerarLista();
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		Usuario usuariologado=(Usuario)session.getAttribute("usuario");
+		if (parecerProvaFiltrada != null && !parecerProvaFiltrada.isEmpty()) {
+			list.addAll(dao.findByNameAvaliador(parecerProvaFiltrada,usuariologado));
+		} else {
+			list.addAll(dao.findAllAvaliador(usuariologado));
+		}
+	}
+	/* *************************************************************** */
 
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
 		FacesContext fc = FacesContext.getCurrentInstance();

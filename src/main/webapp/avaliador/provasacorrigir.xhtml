@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+<!--
+É preciso atualizar todos os values
+-->
+
+	<ui:define name="conteudo">
+	<div class="cabecalhoNovo">
+		<h1>PROVAS</h1>
+		</div>
+		<h:form>
+			<div class="barraSuperiorContainer">
+				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
+						id="parecerProvaFiltrada" class="col-sm-8"
+						value="#{provaBean.parecerProvaFiltrada}" /></span> <span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{provaBean.listarProvaAvaliador}" /></span>
+			</div>
+			<div class="alert-success">
+				<h:messages />
+			</div>
+			<div class="container">
+				<div class="row">
+					<h:dataTable value="#{provaBean.list}" var="item"
+						
+						class="table table-hover table-bordered thead-inverse">
+						<thead>
+							<h:column>
+								<f:facet name="header"> ID</f:facet>#{item.id}</h:column>
+							<h:column>
+								<f:facet name="header">Prazo</f:facet>#{item.prazo}</h:column>
+								<h:column>
+								<f:facet name="header">Tipo Avaliacao</f:facet>#{item.tipoAvaliacao.nome}</h:column>
+							<h:column>
+								<f:facet name="header">Candidato</f:facet>#{item.candidato.nome}</h:column>
+							<h:column>
+								<f:facet name="header">Avaliador</f:facet>#{item.usuario.nome}</h:column>
+							<!-- Visualizar -->
+							<h:column>
+								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
+							
+							<h:column class="centralizarTabela">
+								<div class="centralizarTabela">
+									<h:commandLink action="#{provaBean.editar(item)}">
+										<h:graphicImage library="imagem" name="editar.svg"
+											alt="Editar" title="Editar" />
+									</h:commandLink>
+								</div>
+							</h:column>
+							<h:column>
+								<div class="centralizarTabela">
+									<h:commandLink action="#{provaBean.remover(item)}">
+										<h:graphicImage library="imagem" name="lixo.svg" alt="Remover"
+											title="Remover" />
+									</h:commandLink>
+								</div>
+							</h:column>
+						</thead>
+					</h:dataTable>
+				</div>
+
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>
