@@ -29,15 +29,13 @@
 					<h:outputLabel value="#{tipoAvaliacaoBean.tipoAvaliacao.nome}"  />
 				</div>
 				<div class="row">
-					<h:outputLabel value="criterio:" for="campo-criterio" />
-				<h:selectManyCheckbox value="#{tipoAvaliacaoBean.criterios}" id="campo-criterio"
-					 label="criterio:" required="true">
-					<f:selectItems value="#{tipoAvaliacaoBean.listaCriterio}" var="t"
-							itemLabel="#{t.descricao}" itemValue="#{t}"  rendered="#{not empty tipoAvaliacaoBean.listaCriterio}"/>
-					</h:selectManyCheckbox>
-					<h:message for="campo-criterio" style="color:red" />
-				</div>
+				<h:selectManyCheckbox value="#{tipoAvaliacaoBean.criterios}" required="true">
 
+						<f:selectItems value="#{tipoAvaliacaoBean.listaCriterio}" var="t"
+								itemLabel="#{t.descricao}" itemValue="#{t}"  rendered="#{not empty tipoAvaliacaoBean.listaCriterio}"/>
+
+				</h:selectManyCheckbox>
+				</div>
 			</div>
 		</h:form>
 	</ui:define>
