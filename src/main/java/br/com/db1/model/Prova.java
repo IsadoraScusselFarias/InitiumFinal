@@ -37,7 +37,13 @@ public class Prova {
 	private String parecer;
 	
 	@Column(nullable = true)
-	private String anexo;
+	private byte[] anexo;
+	
+	@Column(name = "nomeArquivo", nullable = true, length = 50)
+	private String nomeArquivo;
+
+	@Column(name = "extensao", nullable = true, length = 10)
+	private String extensaoArquivo;
 	
 	@Column(nullable = true)
 	private Integer prazo;
@@ -129,11 +135,11 @@ public class Prova {
 		this.parecer = parecer;
 	}
 
-	public String getAnexo() {
+	public byte[] getAnexo() {
 		return anexo;
 	}
 
-	public void setAnexo(String anexo) {
+	public void setAnexo(byte[] anexo) {
 		this.anexo = anexo;
 	}
 

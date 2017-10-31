@@ -6,21 +6,20 @@
 <ui:composition template="base/template.xhtml">
 
 	<ui:define name="conteudo">
-		<h:form>
+			<h:form enctype="multipart/form-data" prependId="false">
 			<div class="container">
 				<div class="linha">
 					<h3>Cadastro de Prova</h3>
 				</div>
 				<div class="formularioContainer">
-				<div class="row">
-						<div class="col-2 col-form-label">
-							<h:outputLabel value="Anexo" for="campo-anexo" />
-						</div>
-						<div class="col-10">
-							<h:inputText  id="campo-anexo" required="al" label="prova"								value="#{provaBean.prova.anexo}">
-							</h:inputText>
-						</div>
-					</div>
+				<div class="form-group">
+						<h:outputLabel value="Anexo" for="campo-anexo" />
+						<h:inputFile id="campo-anexo" required="true" label="Anexo"
+							value="#{provaBean.arquivoUpado}"
+							requiredMessage="Arquivo não selecionado!!" />
+						<h:message for="campo-anexo" style="color:red" />
+					</div>	
+					
 					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Prazo:" for="campo-prazo" />
@@ -67,7 +66,7 @@
 					<f:selectItem itemValue="" itemLabel="Selecione um Avaliador" />
 
 				<h:message for="campo-usuario" style="color:red" />
-					<f:selectItems value="#{provaBean.listUsuario}" var="usuario"
+					<f:selectItems value="#{avaliadorBean.list}" var="usuario"
 						itemLabel="#{usuario.nome}" itemValue="#{usuario}"  />
 				</h:selectOneMenu>
 				<h:message for="campo-usuario" style="color:red" />
