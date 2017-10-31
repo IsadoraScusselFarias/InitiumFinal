@@ -66,7 +66,7 @@
 					<f:selectItem itemValue="" itemLabel="Selecione um Avaliador" />
 
 				<h:message for="campo-usuario" style="color:red" />
-					<f:selectItems value="#{provaBean.listUsuario}" var="usuario"
+					<f:selectItems value="#{avaliadorBean.list}" var="usuario"
 						itemLabel="#{usuario.nome}" itemValue="#{usuario}"  />
 				</h:selectOneMenu>
 				<h:message for="campo-usuario" style="color:red" />
