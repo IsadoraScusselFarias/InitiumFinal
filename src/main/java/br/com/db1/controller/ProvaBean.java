@@ -206,6 +206,17 @@ public class ProvaBean {
 			list.addAll(dao.findAll());
 		}
 	}
+	
+	/* ********************************************************** */
+	public void listarProvaAvaliador() {
+		zerarLista();
+		if (parecerProvaFiltrada != null && !parecerProvaFiltrada.isEmpty()) {
+			list.addAll(dao.findByNameAvaliador(parecerProvaFiltrada));
+		} else {
+			list.addAll(dao.findAllAvaliador());
+		}
+	}
+	/* *************************************************************** */
 
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
 		FacesContext fc = FacesContext.getCurrentInstance();
