@@ -101,10 +101,9 @@ public class TipoAvaliacaoBean {
 		return "cadastrarTipoAvaliacao";
 	}
 	public String detalhar(TipoAvaliacao tipoAvaliacao) {
-		tipoAvaliacao.getCriterio();
+		listaCriterio2();
 		return "detalharTipoAvaliacao";
 	}
-
 	public String remover(TipoAvaliacao tipoAvaliacao) {
 		if (!dao.delete(tipoAvaliacao.getId())) {
 			adicionarMensagem("Erro ao remover o tipo de avaliacao.", FacesMessage.SEVERITY_ERROR);

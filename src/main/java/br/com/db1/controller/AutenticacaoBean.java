@@ -1,35 +1,61 @@
 package br.com.db1.controller;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-@ManagedBean
-public class AutenticacaoBean {
-	private static final String USUARIO_CORRETO = "admin";
-	private static final String SENHA_CORRETA = "admin";
+import br.com.db1.dao.impl.AutenticacaoDao;
 
+import br.com.db1.model.Usuario;
+
+@ManagedBean
+@RequestScoped
+@Named
+public class AutenticacaoBean {
 	private String usuario;
+	
 	private String senha;
+
+	@Inject
+	private AutenticacaoDao dao;
 
 	public String autentica() {
 		FacesContext fc = FacesContext.getCurrentInstance();
+		Usuario usuarioLogado = dao.findById(this.usuario, this.senha);
 
-		if (USUARIO_CORRETO.equals(this.usuario) && SENHA_CORRETA.equals(this.senha)) {
+		if (usuarioLogado == null) {
+			FacesMessage fm = new FacesMessage("usuário e/ou senha inválidos");
+			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+			fc.addMessage(null, fm);
+			return "/login";
+		} else if (usuarioLogado.getAdministrador()) {
 
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
-			session.setAttribute("usuario", this.usuario);
+			session.setAttribute("usuario", usuarioLogado);
 
-			return "/logado/home";
+			return "/logado/home?faces-redirect=true";
+			
+		}else if (usuarioLogado.getAdministrador().equals(false)){
+
+			ExternalContext ec = fc.getExternalContext();
+			HttpSession session = (HttpSession) ec.getSession(false);
+			session.setAttribute("usuario", usuarioLogado);
+			
+			return "/avaliador/home";
+
 		} else {
 			FacesMessage fm = new FacesMessage("usuário e/ou senha inválidos");
 			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
 			fc.addMessage(null, fm);
 			return "/login";
 		}
+
 	}
 
 	public String registraSaida() {
@@ -56,5 +82,5 @@ public class AutenticacaoBean {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 }
+
