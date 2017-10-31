@@ -7,9 +7,11 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.db1.dao.impl.CandidatoDao;
@@ -213,10 +215,14 @@ public class ProvaBean {
 	/* ********************************************************** */
 	public void listarProvaAvaliador() {
 		zerarLista();
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpSession session = (HttpSession) ec.getSession(false);
+		Usuario usuariologado=(Usuario)session.getAttribute("usuario");
 		if (parecerProvaFiltrada != null && !parecerProvaFiltrada.isEmpty()) {
-			list.addAll(dao.findByNameAvaliador(parecerProvaFiltrada));
+			list.addAll(dao.findByNameAvaliador(parecerProvaFiltrada,usuariologado));
 		} else {
-			list.addAll(dao.findAllAvaliador());
+			list.addAll(dao.findAllAvaliador(usuariologado));
 		}
 	}
 	/* *************************************************************** */

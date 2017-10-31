@@ -39,15 +39,15 @@ public class AutenticacaoBean {
 			HttpSession session = (HttpSession) ec.getSession(false);
 			session.setAttribute("usuario", usuarioLogado);
 
-			return "/avaliador/home";
+			return "/logado/home?faces-redirect=true";
 			
 		}else if (usuarioLogado.getAdministrador().equals(false)){
 
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
 			session.setAttribute("usuario", usuarioLogado);
-
-			return "/logado/home?faces-redirect=true";
+			
+			return "/avaliador/home";
 
 		} else {
 			FacesMessage fm = new FacesMessage("usuário e/ou senha inválidos");

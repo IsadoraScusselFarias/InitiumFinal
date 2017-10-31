@@ -33,19 +33,17 @@ public class ProvaDao implements DAO<Prova>{
 		return query.getResultList();
 	}
 	
-	@ManagedProperty(value = "#{sessionScope.usuario.id}")
-	private Long idUsuario;
 
-	public List<Prova> findAllAvaliador() {
+	public List<Prova> findAllAvaliador(Usuario usuario) {
 		Query query = manager.createQuery("Select p from Prova p where p.usuario.id = :pUsuarioId");
-		query.setParameter("pUsuarioId", idUsuario);
+		query.setParameter("pUsuarioId", usuario.getId());
 		return query.getResultList();
 	}
 	
-	public List<Prova> findByNameAvaliador(String parecer) {
+	public List<Prova> findByNameAvaliador(String parecer, Usuario usuario) {
 		Query query = manager.createQuery("Select p from Prova p where ((p.parecer like :pParecer) and (p.usuario.id = :pUsuarioId))");
 		query.setParameter("pParecer", "%"+parecer+"%");
-		query.setParameter("pUsuarioId", idUsuario);
+		query.setParameter("pUsuarioId", usuario.getId());
 		return query.getResultList();
 	}
 
