@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger" />
+	<header class="avatar">
+		<h:graphicImage
+			value="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" />
+		<h2>#{sessionScope.usuario.nome}</h2>
+	</header>
+	<ul>
+		<a href="/Initium2/avaliador/provasacorrigir.xhtml"><li tabindex="0" class="icon-clipboard"><span>Provas à corrigir</span></li></a>
+	</ul>
+</nav>
+</html>

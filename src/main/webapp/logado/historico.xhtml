@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="base/template.xhtml">
+<!--
+É preciso atualizar todos os values
+-->
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="barraSuperiorContainer">
+				<span><h:outputLabel value="Pesquisar:" /></span> <span><h:inputText
+						id="nomeCandidatoFiltrada" class="col-sm-8"
+						value="#{candidatoBean.nomeCandidatoFiltrada}" /></span> <span><h:commandButton
+						class="btn btn-info" value="Filtrar"
+						action="#{candidatoBean.listarCandidato}" /></span>
+			</div>
+			<div class="alert-success">
+					<h:messages />
+				</div>
+			<div class="container">
+				<div class="row">
+					<h:dataTable value="#{candidatoBean.list}" var="item"
+						rendered="#{not empty candidatoBean.list}"
+						class="table table-hover table-bordered thead-inverse">
+						<thead>
+						<h:column >
+							<f:facet name="header" >ID candidato</f:facet>#{item.id}</h:column>
+						<h:column>
+							<f:facet name="header" >Administrador</f:facet>#{item.nome}</h:column>
+						<h:column>
+							<f:facet name="header">Tipo Avaliacao</f:facet>#{item.email}</h:column>
+						<h:column>
+							<f:facet name="header" >Prazo para correcao</f:facet>#{item.telefone}</h:column>
+
+						<h:column>
+							<div class="centralizarTabela">
+								<h:commandLink action="#{candidatoBean.remover(item)}">
+									<h:graphicImage library="imagem" name="edit.svg" alt="Corrigir"
+										title="Corrigir" />
+								</h:commandLink>
+							</div>
+						</h:column>
+					</thead>
+					</h:dataTable>
+				</div>
+
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>
