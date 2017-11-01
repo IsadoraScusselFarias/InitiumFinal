@@ -12,38 +12,7 @@
 					<h3>Cadastro de Prova</h3>
 				</div>
 				<div class="formularioContainer">
-				<div class="row">
-						<div class="col-2 col-form-label">
-							<h:outputLabel value="Anexo" for="campo-anexo" />
-						</div>
-						<div class="col-10">
-							<h:inputText  id="campo-anexo" required="false" label="prova"								value="#{provaBean.prova.anexo}">
-							</h:inputText>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-2 col-form-label">
-							<h:outputLabel value="Data Inicio Correção:"
-								for="campo-dataInicioCorrecao" />
-						</div>
-
-						<div class="col-10">
-							<h:inputText value="#{provaBean.prova.dataInicioCorrecao}"
-								id="campo-dataInicioCorrecao" required="false" label="prova">
-							</h:inputText>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-2 col-form-label">
-							<h:outputLabel value="Data Final Correção:" for="campo-dataFinalCorrecao"
-								class="" />
-						</div>
-						<div class="col-10">
-							<h:inputText value="#{provaBean.prova.dataFinalCorrecao}"
-								id="campo-dataFinalCorrecao" required="false" label="prova">
-							</h:inputText>
-						</div>
-					</div>
+			
 					<div class="row">
 						<div class="col-2 col-form-label">
 							<h:outputLabel value="Pontos Fortes:" for="campo-pontosFortes" />
@@ -74,9 +43,10 @@
 							</h:inputText>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div>
-							<h:commandButton value="Salvar" action="#{provaBean.salvar}"
+							<h:commandButton value="Salvar" action="#{provaBean.salvarCorrecao}"
 								class="btn" />
 						</div>
 					</div>

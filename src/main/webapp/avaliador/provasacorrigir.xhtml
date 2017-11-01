@@ -40,12 +40,10 @@
 							<h:column>
 								<f:facet name="header">Avaliador</f:facet>#{item.usuario.nome}</h:column>
 							<!-- Visualizar -->
-							<h:column>
-								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
 							
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
-									<h:commandLink action="#{provaBean.editar(item)}">
+									<h:commandLink action="#{provaBean.corrigir(item)}">
 										<h:graphicImage library="imagem" name="editar.svg"
 											alt="Editar" title="Editar" />
 									</h:commandLink>

@@ -43,7 +43,7 @@
 					 label="criterio:" required="true">
 
 					<f:selectItems value="#{tipoAvaliacaoBean.listaCriterio}" var="t"
-							itemLabel="#{t.descricao}" itemValue="#{t}"  rendered="#{not empty tipoAvaliacaoBean.listaCriterio}/>
+							itemLabel="#{t.descricao}" itemValue="#{t}"  rendered="#{not empty tipoAvaliacaoBean.listaCriterio}"/>
 					</h:selectManyCheckbox>
 					<h:message for="campo-criterio" style="color:red" />
 				</div>

@@ -114,6 +114,9 @@ public class ProvaBean {
 		carregarUsuario();
 		zerarListaTipoAvaliacao();
 		carregarTipoAvaliacao();
+		
+		zerarProva();
+		carregarProva();
 
 	}
 	
@@ -188,11 +191,32 @@ public class ProvaBean {
 		return "prova";
 	}
 
+	public String salvarCorrecao() {
+		if (!dao.save(this.prova)) {
+			adicionarMensagem("Erro ao cadastrar a prova.", FacesMessage.SEVERITY_ERROR);
+		} else {
+			adicionarMensagem("Prova salva com sucesso.", FacesMessage.SEVERITY_INFO);
+			parecerProvaFiltrada = this.prova.getParecer();
+			listarProvaAvaliador();
+		}
+		return "provasacorrigir";
+	}
+	
 	public String editar(Prova prova) {
 		this.prova = dao.findById(prova.getId());
 		return "cadastrarProva";
 	}
 
+	public String corrigir(Prova prova) {
+		this.prova = dao.findById(prova.getId());
+		return "cadastrarProvaAvaliador";
+	}
+	
+	public String visualizar(Prova prova) {
+		this.prova = dao.findById(prova.getId());
+		return "visualizarProva";
+	}
+	
 	public String remover(Prova prova) {
 		if (!dao.delete(prova.getId())) {
 			adicionarMensagem("Erro ao remover a prova .", FacesMessage.SEVERITY_ERROR);

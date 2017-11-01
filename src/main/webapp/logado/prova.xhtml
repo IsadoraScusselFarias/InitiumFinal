@@ -39,9 +39,16 @@
 								<f:facet name="header">Candidato</f:facet>#{item.candidato.nome}</h:column>
 							<h:column>
 								<f:facet name="header">Avaliador</f:facet>#{item.usuario.nome}</h:column>
-							<!-- Visualizar -->
-							<h:column>
-								<f:facet name="header">Anexo</f:facet>#{item.anexo}</h:column>
+							
+							<h:column class="centralizarTabela">
+								<div class="centralizarTabela">
+								<f:facet name="header">Visualizar</f:facet>
+									<h:commandLink action="#{provaBean.visualizar(item)}">
+										<h:graphicImage library="imagem" name="detalhar.png"
+											alt="Visualizar" title="Visualizar" />
+									</h:commandLink>
+								</div>
+							</h:column>
 							
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
@@ -52,6 +59,7 @@
 									</h:commandLink>
 								</div>
 							</h:column>
+							
 							<h:column>
 								<div class="centralizarTabela">
 								<f:facet name="header">Remover</f:facet>
