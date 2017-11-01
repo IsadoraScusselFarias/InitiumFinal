@@ -40,6 +40,7 @@
 							<f:facet name="header">Prazo Padrao</f:facet>#{item.prazoPadrao}</h:column>
 							<h:column class="centralizarTabela">
 							<div class="centralizarTabela">
+							<f:facet name="header">Editar</f:facet>
 								<h:commandLink action="#{tipoAvaliacaoBean.editar(item)}">
 									<h:graphicImage library="imagem" name="editar.svg" alt="Editar"
 										title="Editar" />
@@ -48,9 +49,18 @@
 						</h:column>
 						<h:column>
 							<div class="centralizarTabela">
+							<f:facet name="header">Remover</f:facet>
 								<h:commandLink action="#{tipoAvaliacaoBean.remover(item)}">
 									<h:graphicImage library="imagem" name="lixo.svg" alt="Remover"
 										title="Remover" />
+								</h:commandLink>
+							</div>
+						</h:column>
+						<h:column>
+							<div class="centralizarTabela">
+								<h:commandLink action="#{tipoAvaliacaoBean.detalhar(item)}">
+									<h:graphicImage library="imagem" name="detalhar.png" alt="Detalhar"
+										title="Detalhar" />
 								</h:commandLink>
 							</div>
 						</h:column>
