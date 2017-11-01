@@ -45,6 +45,16 @@
 							
 							<h:column class="centralizarTabela">
 								<div class="centralizarTabela">
+								<f:facet name="header">Visualizar</f:facet>
+									<h:commandLink action="#{provaBean.visualizar(item)}">
+										<h:graphicImage library="imagem" name="detalhar.png"
+											alt="Visualizar" title="Visualizar" />
+									</h:commandLink>
+								</div>
+							</h:column>
+							
+							<h:column class="centralizarTabela">
+								<div class="centralizarTabela">
 								<f:facet name="header">Editar</f:facet>
 									<h:commandLink action="#{provaBean.editar(item)}">
 										<h:graphicImage library="imagem" name="editar.svg"
@@ -52,6 +62,7 @@
 									</h:commandLink>
 								</div>
 							</h:column>
+							
 							<h:column>
 								<div class="centralizarTabela">
 								<f:facet name="header">Remover</f:facet>
