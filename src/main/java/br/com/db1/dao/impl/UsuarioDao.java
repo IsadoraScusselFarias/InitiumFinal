@@ -34,7 +34,6 @@ public class UsuarioDao implements DAO<Usuario> {
 	public List<Usuario> findByNameAvaliador(String nome) {
 		Query query = manager.createQuery("Select u from Usuario u where (u.nome like :pNome) and (u.administrador is false)");
 		query.setParameter("pNome", "%"+nome+"%");
-		//query.setParameter("false", false);
 		return query.getResultList();
 	}
 	
